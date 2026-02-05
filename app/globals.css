@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  /* Gamified Blue/Navy Theme */
+  
+  /* Backgrounds */
+  --color-background: #005d9c; /* Medium Blue */
+  --color-foreground: #ffffff; /* White text for better contrast on blue bg */
+  
+  /* Primary Brand Color - Navy */
+  --color-primary: #1e3a8a; /* Navy Blue */
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #172554; /* Darker Navy */
+  
+  /* Secondary - Light Blue (replaced Yellow/Gold) */
+  --color-secondary: #8bb9e0; /* Light Blue */
+  --color-secondary-foreground: #1e3a8a;
+  
+  /* Accent - for highlights */
+  --color-accent: #2563eb; /* Blue 600 */
+  --color-accent-foreground: #ffffff;
+  
+  /* UI Elements */
+  --color-card: #005d9c;
+  --color-card-foreground: #ffffff;
+  
+  --color-border: #1e3a8a; /* Navy Border */
+  --color-input: #1e3a8a;
+  --color-ring: #8bb9e0; /* Light Blue */
+
+  /* Semantic Colors */
+  --color-success: #15803d; /* Green 700 */
+  --color-warning: #8bb9e0; /* Replaced Yellow 800 with Light Blue */
+  --color-error: #b91c1c; /* Red 700 */
+
+  /* Radius */
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+  
+  /* Typography */
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Animations */
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+  
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .glass {
+    @apply bg-[#005d9c]/90 backdrop-blur-md border-2 border-[#1e3a8a] shadow-[4px_4px_0px_0px_rgba(30,58,138,1)];
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-[6px_6px_0px_0px_rgba(30,58,138,1)] hover:-translate-y-1 border-2 border-[#1e3a8a];
+  }
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background-color: #005d9c;
+}
+
+body {
+  background-color: #005d9c;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling - Blue/Navy */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #8bb9e0;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3a8a;
+  border-radius: 5px;
+  border: 2px solid #8bb9e0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #172554;
+}

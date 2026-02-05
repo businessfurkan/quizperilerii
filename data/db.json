@@ -1,0 +1,245 @@
+{
+  "quizzes": [
+    {
+      "id": "1",
+      "title": "90'lar Pop Kültürü",
+      "description": "Tarkan'dan Cartel'e, Tetris'ten Sanal Bebek'e. Hangisi senin favorin?",
+      "categorySlug": "muzik",
+      "difficulty": "Orta",
+      "gradient": "from-blue-500 via-blue-600 to-blue-700",
+      "icon": "radio",
+      "image": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2000&auto=format&fit=crop",
+      "items": [
+        {
+          "id": "1",
+          "text": "Tarkan",
+          "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "2",
+          "text": "Mustafa Sandal",
+          "image": "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "3",
+          "text": "Kenan Doğulu",
+          "image": "https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "4",
+          "text": "Burak Kut",
+          "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "5",
+          "text": "Serdar Ortaç",
+          "image": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "6",
+          "text": "Mirkelam",
+          "image": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "7",
+          "text": "Çelik",
+          "image": "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "8",
+          "text": "Hakan Peker",
+          "image": "https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "9",
+          "text": "Sanal Bebek",
+          "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "10",
+          "text": "Tetris",
+          "image": "https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "11",
+          "text": "Walkman",
+          "image": "https://images.unsplash.com/photo-1601643157091-ce5c66517987?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "12",
+          "text": "Gameboy",
+          "image": "https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "13",
+          "text": "Tasolar",
+          "image": "https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "14",
+          "text": "Misketler",
+          "image": "https://images.unsplash.com/photo-1612419572979-37385966d57b?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "15",
+          "text": "Solo Test",
+          "image": "https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=400&auto=format&fit=crop"
+        },
+        {
+          "id": "16",
+          "text": "Cino Çikolata",
+          "image": "https://images.unsplash.com/photo-1511389279451-40082a92c46e?q=80&w=400&auto=format&fit=crop"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "slug": "o-mu-bu-mu",
+      "name": "O mu Bu mu?",
+      "description": "Zorlu seçimler seni bekliyor!",
+      "icon": "zap",
+      "gradient": "from-[#8bb9e0] via-orange-500 to-red-500"
+    },
+    {
+      "id": "2",
+      "slug": "moda",
+      "name": "Moda",
+      "description": "Trendler, stiller ve daha fazlası.",
+      "icon": "shirt",
+      "gradient": "from-pink-400 via-pink-500 to-rose-500"
+    },
+    {
+      "id": "3",
+      "slug": "alisveris",
+      "name": "Alışveriş",
+      "description": "En iyi indirimler ve alışveriş tüyoları.",
+      "icon": "shopping-bag",
+      "gradient": "from-blue-400 via-blue-500 to-blue-600"
+    },
+    {
+      "id": "4",
+      "slug": "yemek",
+      "name": "Yemek",
+      "description": "Gurmeler ve yemek severler buraya.",
+      "icon": "utensils",
+      "gradient": "from-green-400 via-emerald-500 to-teal-500"
+    },
+    {
+      "id": "5",
+      "slug": "seyahat",
+      "name": "Seyahat",
+      "description": "Dünyayı gezmeye hazır mısın?",
+      "icon": "plane",
+      "gradient": "from-sky-400 via-blue-500 to-cyan-500"
+    },
+    {
+      "id": "6",
+      "slug": "arabalar",
+      "name": "Arabalar",
+      "description": "Hız tutkunları için özel quizler.",
+      "icon": "car",
+      "gradient": "from-gray-600 via-gray-700 to-gray-800"
+    },
+    {
+      "id": "7",
+      "slug": "telefon-markalari",
+      "name": "Telefon Markaları",
+      "description": "Teknoloji devi markaları ne kadar tanıyorsun?",
+      "icon": "smartphone",
+      "gradient": "from-indigo-400 via-blue-500 to-sky-500"
+    },
+    {
+      "id": "8",
+      "slug": "sevgilimin-bilmemesi-gerekenler",
+      "name": "Sevgilimin Bilmemesi Gerekenler",
+      "description": "Aramızda kalsın...",
+      "icon": "lock",
+      "gradient": "from-rose-500 via-red-600 to-rose-700"
+    },
+    {
+      "id": "9",
+      "slug": "kiskanclik-testi",
+      "name": "Kıskançlık Testi",
+      "description": "Ne kadar kıskançsın?",
+      "icon": "eye",
+      "gradient": "from-green-500 via-teal-600 to-emerald-700"
+    },
+    {
+      "id": "10",
+      "slug": "asla-yapamaz",
+      "name": "Asla Yapamaz",
+      "description": "Cesaretin var mı?",
+      "icon": "shield-alert",
+      "gradient": "from-orange-500 via-[#8bb9e0] to-[#8bb9e0]"
+    },
+    {
+      "id": "11",
+      "slug": "logo-tanima",
+      "name": "Logo Tanıma",
+      "description": "Markaların logolarını tahmin et.",
+      "icon": "image",
+      "gradient": "from-indigo-500 via-blue-600 to-sky-600"
+    },
+    {
+      "id": "12",
+      "slug": "unluler",
+      "name": "Ünlüler",
+      "description": "Magazin dünyasına ne kadar hakimsin?",
+      "icon": "star",
+      "gradient": "from-[#8bb9e0] via-[#8bb9e0] to-orange-500"
+    },
+    {
+      "id": "13",
+      "slug": "diziler-filmler",
+      "name": "Diziler & Filmler",
+      "description": "Sinema ve dizi tutkunları için.",
+      "icon": "film",
+      "gradient": "from-red-500 via-rose-600 to-pink-600"
+    },
+    {
+      "id": "14",
+      "slug": "muzik",
+      "name": "Müzik",
+      "description": "Ritim, melodi ve şarkı sözleri.",
+      "icon": "music",
+      "gradient": "from-blue-500 via-indigo-600 to-violet-600"
+    },
+    {
+      "id": "15",
+      "slug": "influencer-dunyasi",
+      "name": "Influencer Dünyası",
+      "description": "Sosyal medya fenomenlerini tanı.",
+      "icon": "instagram",
+      "gradient": "from-violet-500 via-indigo-600 to-blue-600"
+    },
+    {
+      "id": "16",
+      "slug": "utandiran-sorular",
+      "name": "Utandıran Sorular",
+      "description": "Yüzün kızarabilir!",
+      "icon": "meh",
+      "gradient": "from-red-400 via-orange-500 to-[#8bb9e0]"
+    },
+    {
+      "id": "17",
+      "slug": "sadakat-testi",
+      "name": "Sadakat Testi",
+      "description": "İlişkini test et.",
+      "icon": "heart-handshake",
+      "gradient": "from-blue-500 via-cyan-600 to-teal-600"
+    },
+    {
+      "id": "18",
+      "slug": "hangisi-daha-sinir-bozucu",
+      "name": "Hangisi Daha Sinir Bozucu",
+      "description": "Sinirlerine hakim olabilecek misin?",
+      "icon": "frown",
+      "gradient": "from-gray-500 via-slate-600 to-zinc-600"
+    }
+  ],
+  "popularQuizIds": [
+    "1"
+  ]
+}
