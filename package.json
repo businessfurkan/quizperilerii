@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "predev": "lsof -t -i:3000 | xargs kill -9 || true",
-    "dev": "next dev",
+    "dev": "prisma generate --schema=./prisma/schema.sqlite.prisma && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
-    "render-build": "npx prisma db push && npx prisma generate && next build"
+    "render-build": "npx prisma db push && npx prisma generate && next build",
+    "db:push:local": "prisma db push --schema=./prisma/schema.sqlite.prisma",
+    "studio:local": "prisma studio --schema=./prisma/schema.sqlite.prisma",
+    "migrate:local": "prisma migrate dev --schema=./prisma/schema.sqlite.prisma"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

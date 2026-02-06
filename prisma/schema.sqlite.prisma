@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String @id @default(cuid())
+  slug        String @unique
+  name        String
+  description String
+  icon        String
+  gradient    String
+  quizzes     Quiz[]
+}
+
+model Quiz {
+  id                String           @id @default(cuid())
+  title             String
+  description       String
+  difficulty        String // Kolay, Orta, Zor
+  image             String
+  icon              String
+  gradient          String
+  resultTitle       String?
+  resultDescription String?
+  isPopular         Boolean          @default(false)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  categorySlug String
+  category     Category @relation(fields: [categorySlug], references: [slug])
+
+  items TournamentItem[]
+}
+
+model TournamentItem {
+  id     String @id @default(cuid())
+  text   String
+  image  String
+  quizId String
+  quiz   Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  order  Int    @default(0)
+}
+
+model Poll {
+  id          String       @id @default(cuid())
+  question    String
+  description String?
+  slug        String       @unique
+  isActive    Boolean      @default(true)
+  startDate   DateTime     @default(now())
+  endDate     DateTime?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  options     PollOption[]
+  votes       Vote[]
+}
+
+model PollOption {
+  id        String   @id @default(cuid())
+  text      String
+  image     String?
+  votes     Int      @default(0)
+  pollId    String
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  votesList Vote[]
+}
+
+model Vote {
+  id          String   @id @default(cuid())
+  pollId      String
+  poll        Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  optionId    String
+  option      PollOption @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  
+  ageRange    String
+  gender      String
+  city        String
+  
+  createdAt   DateTime @default(now())
+}
+
+model BoxNightTask {
+  id        String   @id @default(cuid())
+  text      String
+  type      String   // reward, risk, fun
+  icon      String   // Heart, Lock, Skull, etc.
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

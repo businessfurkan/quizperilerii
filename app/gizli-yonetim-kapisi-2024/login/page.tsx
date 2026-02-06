@@ -28,7 +28,7 @@ export default function LoginPage() {
       if (result?.error) {
         setError("Giriş bilgileri hatalı.");
       } else if (result?.ok) {
-        router.push("/admin");
+        router.push("/gizli-yonetim-kapisi-2024");
         router.refresh();
       } else {
          setError("Bilinmeyen bir hata oluştu.");

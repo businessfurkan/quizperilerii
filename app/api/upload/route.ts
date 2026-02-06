@@ -58,9 +58,11 @@ export async function POST(request: NextRequest) {
       }
 
       // 3. Magic Bytes Check (Optional but recommended)
-      // We can read the first few bytes without reading the whole file if we want to be efficient,
-      // but since we need to upload the whole file anyway, reading a small chunk or the buffer is fine.
-      // For the storage provider, we pass the File object directly.
+      // We read the file as an ArrayBuffer to check magic bytes
+      const buffer = Buffer.from(await file.arrayBuffer());
+      if (!validateMagicBytes(buffer, file.type)) {
+         return NextResponse.json({ error: `File content does not match extension/type: ${file.name}` }, { status: 400 });
+      }
       
       try {
         const result = await storageProvider.uploadFile(file);

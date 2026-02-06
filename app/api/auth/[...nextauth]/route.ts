@@ -29,8 +29,8 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   pages: {
-    signIn: "/admin/login",
-    error: '/admin/login', // Error code passed in url query string as ?error=
+    signIn: "/gizli-yonetim-kapisi-2024/login",
+    error: '/gizli-yonetim-kapisi-2024/login', // Error code passed in url query string as ?error=
   },
   callbacks: {
     async session({ session, token }) {

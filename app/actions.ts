@@ -49,8 +49,9 @@ export async function createQuiz(formData: FormData) {
     await setPopular(newQuiz.id, true);
   }
   revalidatePath("/");
-  revalidatePath("/admin/quizzes");
-  redirect("/admin/quizzes");
+  revalidatePath("/gizli-yonetim-kapisi-2024/quizzes");
+  revalidatePath(`/categories/${validatedData.categorySlug}`);
+  redirect("/gizli-yonetim-kapisi-2024/quizzes");
 }
 
 export async function updateQuiz(id: string, formData: FormData) {
@@ -82,22 +83,29 @@ export async function updateQuiz(id: string, formData: FormData) {
   await saveQuiz(updatedQuiz);
   await setPopular(id, !!validatedData.isPopular);
   revalidatePath("/");
-  revalidatePath("/admin/quizzes");
-  redirect("/admin/quizzes");
+  revalidatePath("/gizli-yonetim-kapisi-2024/quizzes");
+  revalidatePath(`/quiz/${id}`);
+  revalidatePath(`/categories/${validatedData.categorySlug}`);
+  redirect("/gizli-yonetim-kapisi-2024/quizzes");
 }
 
 export async function deleteQuizAction(id: string) {
   await checkAuth();
+  const quiz = await getQuizById(id);
   await deleteQuiz(id);
   revalidatePath("/");
-  revalidatePath("/admin/quizzes");
+  revalidatePath("/gizli-yonetim-kapisi-2024/quizzes");
+  if (quiz) {
+    revalidatePath(`/quiz/${id}`);
+    revalidatePath(`/categories/${quiz.categorySlug}`);
+  }
 }
 
 export async function togglePopularAction(id: string) {
   await checkAuth();
   await togglePopular(id);
   revalidatePath("/");
-  revalidatePath("/admin/quizzes");
+  revalidatePath("/gizli-yonetim-kapisi-2024/quizzes");
 }
 
 export async function createCategory(formData: FormData) {
@@ -122,8 +130,8 @@ export async function createCategory(formData: FormData) {
 
   await saveCategory(newCategory);
   revalidatePath("/");
-  revalidatePath("/admin/categories");
-  redirect("/admin/categories");
+  revalidatePath("/gizli-yonetim-kapisi-2024/categories");
+  redirect("/gizli-yonetim-kapisi-2024/categories");
 }
 
 export async function updateCategory(id: string, formData: FormData) {
@@ -148,15 +156,20 @@ export async function updateCategory(id: string, formData: FormData) {
 
   await saveCategory(updatedCategory);
   revalidatePath("/");
-  revalidatePath("/admin/categories");
-  redirect("/admin/categories");
+  revalidatePath("/gizli-yonetim-kapisi-2024/categories");
+  revalidatePath(`/categories/${validatedData.slug}`);
+  redirect("/gizli-yonetim-kapisi-2024/categories");
 }
 
 export async function deleteCategoryAction(id: string) {
   await checkAuth();
+  const category = await getCategoryById(id);
   await deleteCategory(id);
   revalidatePath("/");
-  revalidatePath("/admin/categories");
+  revalidatePath("/gizli-yonetim-kapisi-2024/categories");
+  if (category) {
+    revalidatePath(`/categories/${category.slug}`);
+  }
 }
 
 
@@ -204,8 +217,8 @@ export async function createPoll(formData: FormData) {
 
   await savePoll(validated);
   revalidatePath("/");
-  revalidatePath("/admin/polls");
-  redirect("/admin/polls");
+  revalidatePath("/gizli-yonetim-kapisi-2024/polls");
+  redirect("/gizli-yonetim-kapisi-2024/polls");
 }
 
 export async function updatePoll(id: string, formData: FormData) {
@@ -225,13 +238,13 @@ export async function updatePoll(id: string, formData: FormData) {
   
     await savePoll({ id, ...validated });
     revalidatePath("/");
-    revalidatePath("/admin/polls");
-    redirect("/admin/polls");
+    revalidatePath("/gizli-yonetim-kapisi-2024/polls");
+    redirect("/gizli-yonetim-kapisi-2024/polls");
 }
 
 export async function deletePollAction(id: string) {
     await checkAuth();
     await deletePoll(id);
     revalidatePath("/");
-    revalidatePath("/admin/polls");
+    revalidatePath("/gizli-yonetim-kapisi-2024/polls");
 }

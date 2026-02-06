@@ -7,11 +7,11 @@ import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
 const sidebarItems = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Quizler", href: "/admin/quizzes", icon: FileQuestion },
-  { name: "Kategoriler", href: "/admin/categories", icon: FolderTree },
-  { name: "Anketler", href: "/admin/polls", icon: Vote },
-  { name: "Box Night", href: "/admin/box-night", icon: Box },
+  { name: "Dashboard", href: "/gizli-yonetim-kapisi-2024", icon: LayoutDashboard },
+  { name: "Quizler", href: "/gizli-yonetim-kapisi-2024/quizzes", icon: FileQuestion },
+  { name: "Kategoriler", href: "/gizli-yonetim-kapisi-2024/categories", icon: FolderTree },
+  { name: "Anketler", href: "/gizli-yonetim-kapisi-2024/polls", icon: Vote },
+  { name: "Box Night", href: "/gizli-yonetim-kapisi-2024/box-night", icon: Box },
 ];
 
 export default function AdminLayout({
@@ -29,7 +29,7 @@ export default function AdminLayout({
           <div className="p-1.5 rounded-lg bg-blue-900 text-white shadow-sm">
              <Sparkles className="w-5 h-5" />
           </div>
-          <Link href="/admin" className="text-xl font-bold text-blue-900 tracking-tight">
+          <Link href="/gizli-yonetim-kapisi-2024" className="text-xl font-bold text-blue-900 tracking-tight">
             Admin Panel
           </Link>
         </div>
@@ -59,7 +59,7 @@ export default function AdminLayout({
 
         <div className="p-4 border-t-2 border-blue-900/10">
           <button
-            onClick={() => signOut({ callbackUrl: "/admin/login" })}
+            onClick={() => signOut({ callbackUrl: "/gizli-yonetim-kapisi-2024/login" })}
             className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-bold border-2 border-transparent hover:border-red-200"
           >
             <LogOut className="w-5 h-5" />

@@ -27,7 +27,7 @@ export async function createBoxNightTask(data: {
     },
   });
 
-  revalidatePath("/admin/box-night");
+  revalidatePath("/gizli-yonetim-kapisi-2024/box-night");
   revalidatePath("/box-night");
   return task;
 }
@@ -51,7 +51,7 @@ export async function updateBoxNightTask(
     },
   });
 
-  revalidatePath("/admin/box-night");
+  revalidatePath("/gizli-yonetim-kapisi-2024/box-night");
   revalidatePath("/box-night");
   return task;
 }
@@ -61,6 +61,6 @@ export async function deleteBoxNightTask(id: string) {
     where: { id },
   });
 
-  revalidatePath("/admin/box-night");
+  revalidatePath("/gizli-yonetim-kapisi-2024/box-night");
   revalidatePath("/box-night");
 }
