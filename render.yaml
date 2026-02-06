@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: quizperilerii
+    env: node
+    plan: free
+    buildCommand: npm install && npm run render-build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: quizperilerii-db
+          property: connectionString
+      - key: NODE_VERSION
+        value: 20.10.0
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+
+databases:
+  - name: quizperilerii-db
+    plan: free
+    databaseName: quizperilerii
+    user: admin
