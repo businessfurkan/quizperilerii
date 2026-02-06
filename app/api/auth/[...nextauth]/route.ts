@@ -10,20 +10,37 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        console.log("Authorize attempt:", credentials?.email);
+        console.log("--- Login Attempt ---");
+        console.log("Input Email:", credentials?.email);
         
         // Credentials from env
         const validEmail = process.env.ADMIN_EMAIL;
         const validPassword = process.env.ADMIN_PASSWORD;
 
-        if (
-          credentials?.email === validEmail &&
-          credentials?.password === validPassword
-        ) {
+        // Debug info
+        console.log("Env Email configured:", !!validEmail);
+        console.log("Env Password configured:", !!validPassword);
+        
+        if (!validEmail || !validPassword) {
+            console.error("CRITICAL: Admin credentials not found in environment variables!");
+            return null;
+        }
+
+        const isEmailMatch = credentials?.email === validEmail;
+        const isPasswordMatch = credentials?.password === validPassword;
+
+        console.log("Email Match:", isEmailMatch);
+        console.log("Password Match:", isPasswordMatch);
+
+        if (isEmailMatch && isPasswordMatch) {
           console.log("Authorize success");
           return { id: "1", name: "Admin", email: validEmail };
         }
-        console.log("Authorize failed");
+        
+        console.log("Authorize failed - Mismatch");
+        if (!isEmailMatch) console.log("Reason: Email mismatch");
+        if (!isPasswordMatch) console.log("Reason: Password mismatch");
+        
         return null;
       }
     })
