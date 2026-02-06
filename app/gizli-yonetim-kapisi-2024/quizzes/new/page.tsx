@@ -11,7 +11,7 @@ export default async function NewQuizPage() {
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="flex items-center gap-4">
         <Link
-          href="/admin/quizzes"
+          href="/gizli-yonetim-kapisi-2024/quizzes"
           className="p-2 hover:bg-blue-900/10 rounded-xl transition-colors text-blue-900/60 hover:text-blue-900 border-2 border-transparent hover:border-blue-900/20"
         >
           <ArrowLeft className="w-6 h-6" />

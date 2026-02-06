@@ -16,7 +16,7 @@ export default async function QuizzesPage() {
           <p className="text-blue-900/70 font-medium">Tüm quizleri görüntüle, düzenle veya sil.</p>
         </div>
         <Link
-          href="/admin/quizzes/new"
+          href="/gizli-yonetim-kapisi-2024/quizzes/new"
           className="flex items-center gap-2 px-4 py-2 bg-blue-900 hover:bg-blue-800 text-white rounded-xl transition-all font-bold shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 border-2 border-transparent hover:border-white/20"
         >
           <Plus className="w-5 h-5" />
@@ -83,7 +83,7 @@ export default async function QuizzesPage() {
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
-                        href={`/admin/quizzes/${quiz.id}/edit`}
+                        href={`/gizli-yonetim-kapisi-2024/quizzes/${quiz.id}/edit`}
                         className="p-2 bg-white text-blue-900 hover:bg-blue-100 rounded-lg transition-colors border-2 border-blue-900 hover:shadow-[2px_2px_0px_0px_rgba(30,58,138,1)]"
                       >
                         <Edit className="w-4 h-4" />

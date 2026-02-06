@@ -10,20 +10,7 @@ import Image from "next/image";
 import { BoxNightTask } from "@prisma/client";
 
 // Fallback data if DB is empty
-const FALLBACK_TASKS = [
-  { id: "1", text: "Diğer oyuncuya 1 dakika masaj yap.", type: "reward", icon: "Heart", image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80" },
-  { id: "2", text: "Telefonunu 5 dakika diğer oyuncuya ver.", type: "risk", icon: "Lock", image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80" },
-  { id: "3", text: "Diğer oyuncunun seçtiği bir şarkıyı söyle.", type: "fun", icon: "Zap", image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?w=800&q=80" },
-  { id: "4", text: "Bir sonraki tura kadar tek ayak üzerinde dur.", type: "risk", icon: "Skull", image: "https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=800&q=80" },
-  { id: "5", text: "Diğer oyuncuya en sevdiğin özelliğini söyle.", type: "reward", icon: "Heart", image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&q=80" },
-  { id: "6", text: "Diğer oyuncunun istediği bir içeceği hazırla.", type: "fun", icon: "Gift", image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80" },
-  { id: "7", text: "10 şınav çek.", type: "risk", icon: "Zap", image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80" },
-  { id: "8", text: "Diğer oyuncuya dürüstçe bir sırrını anlat.", type: "risk", icon: "Lock", image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" },
-  { id: "9", text: "Gözlerin kapalıyken diğer oyuncunun eline dokunarak onu tanı.", type: "fun", icon: "Heart", image: "https://images.unsplash.com/photo-1615751072497-5f5169febe33?w=800&q=80" },
-  { id: "10", text: "Diğer oyuncunun seçtiği bir şeyi ye (limon, acı biber vb.).", type: "risk", icon: "Skull", image: "https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=800&q=80" },
-  { id: "11", text: "Diğer oyuncuya romantik bir iltifat et.", type: "reward", icon: "Heart", image: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=800&q=80" },
-  { id: "12", text: "Bir sonraki tur boyunca konuşmak yasak.", type: "risk", icon: "Lock", image: "https://images.unsplash.com/photo-1576764402988-7143f6cca974?w=800&q=80" },
-];
+const FALLBACK_TASKS: any[] = [];
 
 // Icon mapping
 const ICON_MAP: Record<string, any> = {
