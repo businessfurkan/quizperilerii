@@ -14,12 +14,16 @@ export const authOptions: NextAuthOptions = {
         console.log("Input Email:", credentials?.email);
         
         // Credentials from env
-        const validEmail = process.env.ADMIN_EMAIL;
-        const validPassword = process.env.ADMIN_PASSWORD;
+        // Helper to clean env vars (remove quotes if added by mistake in UI)
+        const cleanEnv = (val: string | undefined) => val ? val.replace(/^['"]|['"]$/g, '') : undefined;
+        
+        const validEmail = cleanEnv(process.env.ADMIN_EMAIL);
+        const validPassword = cleanEnv(process.env.ADMIN_PASSWORD);
 
         // Debug info
         console.log("Env Email configured:", !!validEmail);
         console.log("Env Password configured:", !!validPassword);
+        if (validPassword) console.log("Env Password length:", validPassword.length);
         
         if (!validEmail || !validPassword) {
             console.error("CRITICAL: Admin credentials not found in environment variables!");
