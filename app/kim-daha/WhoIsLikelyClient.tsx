@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Users, RefreshCw, Trophy, Heart, Sparkles, AlertCircle } from "lucide-react";
+import { ArrowRight, Users, RefreshCw, Trophy, Heart, Sparkles, AlertCircle, Settings, Plus, Trash2, Edit2, Save, X, ChevronUp, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ModernGridPattern } from "@/components/ui/background-patterns";
 import Link from "next/link";
@@ -50,13 +50,84 @@ interface WhoIsLikelyClientProps {
 }
 
 export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClientProps) {
-  // Use database questions if available, otherwise use fallback
-  const questions = initialQuestions.length > 0 
-    ? initialQuestions.map(q => q.text)
-    : FALLBACK_QUESTIONS;
+  // State for questions
+  const [questions, setQuestions] = useState<string[]>([]);
 
-  const [step, setStep] = useState<"names" | "game">("names");
+  // Initialize questions on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("customQuestions");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setQuestions(parsed);
+          return;
+        }
+      } catch (e) {
+        console.error("Failed to parse saved questions", e);
+      }
+    }
+    
+    // Fallback to initial props or default list
+    setQuestions(initialQuestions.length > 0 
+      ? initialQuestions.map(q => q.text)
+      : FALLBACK_QUESTIONS);
+  }, [initialQuestions]);
+
+  const [step, setStep] = useState<"names" | "game" | "result" | "manage">("names");
+  
+  // Question Manager State
+  const [newQuestion, setNewQuestion] = useState("");
+  const [editingQuestionIndex, setEditingQuestionIndex] = useState<number | null>(null);
+  const [editingQuestionText, setEditingQuestionText] = useState("");
+
+  const handleAddQuestion = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newQuestion.trim()) {
+      const updatedQuestions = [...questions, newQuestion.trim()];
+      setQuestions(updatedQuestions);
+      localStorage.setItem("customQuestions", JSON.stringify(updatedQuestions));
+      setNewQuestion("");
+    }
+  };
+
+  const handleDeleteQuestion = (index: number) => {
+    const updatedQuestions = questions.filter((_, i) => i !== index);
+    setQuestions(updatedQuestions);
+    localStorage.setItem("customQuestions", JSON.stringify(updatedQuestions));
+  };
+
+  const handleEditQuestion = (index: number) => {
+    setEditingQuestionIndex(index);
+    setEditingQuestionText(questions[index]);
+  };
+
+  const handleSaveEdit = () => {
+    if (editingQuestionIndex !== null && editingQuestionText.trim()) {
+      const updatedQuestions = [...questions];
+      updatedQuestions[editingQuestionIndex] = editingQuestionText.trim();
+      setQuestions(updatedQuestions);
+      localStorage.setItem("customQuestions", JSON.stringify(updatedQuestions));
+      setEditingQuestionIndex(null);
+      setEditingQuestionText("");
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingQuestionIndex(null);
+    setEditingQuestionText("");
+  };
+
+  const handleReorder = (fromIndex: number, toIndex: number) => {
+    if (toIndex < 0 || toIndex >= questions.length) return;
+    const updatedQuestions = [...questions];
+    const [movedQuestion] = updatedQuestions.splice(fromIndex, 1);
+    updatedQuestions.splice(toIndex, 0, movedQuestion);
+    setQuestions(updatedQuestions);
+    localStorage.setItem("customQuestions", JSON.stringify(updatedQuestions));
+  };
   const [names, setNames] = useState({ p1: "", p2: "" });
+  const [scores, setScores] = useState({ p1: 0, p2: 0 });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -70,15 +141,29 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
     // Shuffle questions
     const shuffled = [...questions].sort(() => Math.random() - 0.5);
     setShuffledQuestions(shuffled);
+    setScores({ p1: 0, p2: 0 });
+    setCurrentQuestionIndex(0);
     setStep("game");
   };
 
-  const handleNextQuestion = () => {
-    setDirection(1);
-    setTimeout(() => {
-      setCurrentQuestionIndex((prev) => (prev + 1) % shuffledQuestions.length);
-      setDirection(0);
-    }, 300);
+  const handleNextQuestion = (selected: "p1" | "p2" | null) => {
+    // Update score if a player is selected
+    if (selected) {
+      setScores(prev => ({ ...prev, [selected]: prev[selected] + 1 }));
+    }
+
+    // Check if game should end (25 questions or end of list)
+    const limit = Math.min(25, shuffledQuestions.length);
+    
+    if (currentQuestionIndex + 1 >= limit) {
+      setStep("result");
+    } else {
+      setDirection(1);
+      setTimeout(() => {
+        setCurrentQuestionIndex((prev) => prev + 1);
+        setDirection(0);
+      }, 300);
+    }
   };
 
   const containerVariants = {
@@ -108,8 +193,16 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl"
+              className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl"
             >
+              <button
+                onClick={() => setStep("manage")}
+                className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white/70 hover:text-white transition-colors z-20"
+                title="Soruları Düzenle"
+              >
+                <Settings className="w-6 h-6" />
+              </button>
+
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 mb-4 shadow-lg">
                   <Users className="w-8 h-8 text-white" />
@@ -159,7 +252,7 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
                 </button>
               </form>
             </motion.div>
-          ) : (
+          ) : step === "game" ? (
             <motion.div
               key="game-screen"
               variants={containerVariants}
@@ -194,7 +287,7 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
               {/* Action Buttons */}
               <div className="grid grid-cols-2 gap-4 w-full">
                 <button
-                  onClick={handleNextQuestion}
+                  onClick={() => handleNextQuestion("p1")}
                   className="group relative h-40 md:h-48 bg-[#3b82f6] hover:bg-[#2563eb] rounded-3xl border-b-8 border-[#1d4ed8] active:border-b-0 active:translate-y-2 transition-all flex flex-col items-center justify-center p-4 shadow-xl"
                 >
                   <span className="text-2xl md:text-4xl font-black text-white break-words text-center leading-tight group-hover:scale-110 transition-transform">
@@ -206,7 +299,7 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
                 </button>
 
                 <button
-                  onClick={handleNextQuestion}
+                  onClick={() => handleNextQuestion("p2")}
                   className="group relative h-40 md:h-48 bg-[#ec4899] hover:bg-[#db2777] rounded-3xl border-b-8 border-[#be185d] active:border-b-0 active:translate-y-2 transition-all flex flex-col items-center justify-center p-4 shadow-xl"
                 >
                   <span className="text-2xl md:text-4xl font-black text-white break-words text-center leading-tight group-hover:scale-110 transition-transform">
@@ -221,7 +314,7 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
               {/* Navigation Footer */}
               <div className="mt-12 flex items-center gap-6">
                 <button 
-                  onClick={() => setCurrentQuestionIndex((prev) => (prev + 1) % shuffledQuestions.length)}
+                  onClick={() => handleNextQuestion(null)}
                   className="flex items-center gap-2 text-white/60 hover:text-white font-bold transition-colors bg-white/10 px-6 py-3 rounded-full hover:bg-white/20"
                 >
                   <RefreshCw className="w-5 h-5" />
@@ -233,6 +326,165 @@ export default function WhoIsLikelyClient({ initialQuestions }: WhoIsLikelyClien
                 </Link>
               </div>
 
+            </motion.div>
+          ) : step === "manage" ? (
+            <motion.div
+              key="manage-screen"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-6 md:p-8 shadow-2xl w-full max-h-[80vh] flex flex-col"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-black text-white flex items-center gap-2">
+                  <Settings className="w-6 h-6" />
+                  Soruları Düzenle
+                </h2>
+                <button
+                  onClick={() => setStep("names")}
+                  className="p-2 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Add New Question */}
+              <form onSubmit={handleAddQuestion} className="mb-6 flex gap-2">
+                <input
+                  type="text"
+                  value={newQuestion}
+                  onChange={(e) => setNewQuestion(e.target.value)}
+                  placeholder="Yeni soru ekle..."
+                  className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/50"
+                />
+                <button
+                  type="submit"
+                  disabled={!newQuestion.trim()}
+                  className="px-4 py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Plus className="w-6 h-6" />
+                </button>
+              </form>
+
+              {/* Questions List */}
+              <div className="flex-1 overflow-y-auto pr-2 space-y-3 custom-scrollbar">
+                {questions.map((q, index) => (
+                  <div key={index} className="group bg-white/5 rounded-xl p-3 flex items-center gap-3 border border-white/5 hover:border-white/20 transition-all">
+                    <div className="flex flex-col gap-1">
+                      <button 
+                        onClick={() => handleReorder(index, index - 1)}
+                        disabled={index === 0}
+                        className="text-white/30 hover:text-white disabled:opacity-0 transition-colors"
+                      >
+                        <ChevronUp className="w-4 h-4" />
+                      </button>
+                      <button 
+                        onClick={() => handleReorder(index, index + 1)}
+                        disabled={index === questions.length - 1}
+                        className="text-white/30 hover:text-white disabled:opacity-0 transition-colors"
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="flex-1">
+                      {editingQuestionIndex === index ? (
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={editingQuestionText}
+                            onChange={(e) => setEditingQuestionText(e.target.value)}
+                            className="flex-1 px-2 py-1 bg-white/10 rounded text-white border border-white/20 focus:outline-none"
+                            autoFocus
+                          />
+                          <button onClick={handleSaveEdit} className="text-green-400 hover:text-green-300">
+                            <Save className="w-5 h-5" />
+                          </button>
+                          <button onClick={handleCancelEdit} className="text-red-400 hover:text-red-300">
+                            <X className="w-5 h-5" />
+                          </button>
+                        </div>
+                      ) : (
+                        <span className="text-white font-medium block">{q}</span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                      <button
+                        onClick={() => handleEditQuestion(index)}
+                        className="p-2 text-blue-300 hover:bg-blue-500/20 rounded-lg transition-colors"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteQuestion(index)}
+                        className="p-2 text-red-300 hover:bg-red-500/20 rounded-lg transition-colors"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="mt-4 text-center text-white/40 text-sm">
+                Toplam {questions.length} soru
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="result-screen"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 md:p-12 shadow-2xl text-center"
+            >
+              <div className="mb-8">
+                 <Trophy className="w-20 h-20 text-yellow-400 mx-auto mb-6 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]" />
+                 <h2 className="text-3xl font-black text-white mb-2">Oyun Bitti!</h2>
+                 <p className="text-white/60 text-lg">Ve işte sonuçlar...</p>
+              </div>
+
+              <div className="mb-12">
+                <div className="text-sm font-bold text-white/50 uppercase tracking-widest mb-4">En Çok Seçilen</div>
+                <div className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-200 animate-gradient-x mb-6">
+                  {scores.p1 > scores.p2 ? names.p1 : scores.p2 > scores.p1 ? names.p2 : "Berabere!"}
+                </div>
+                {scores.p1 !== scores.p2 && (
+                  <p className="text-white/80 font-medium italic">
+                    "Bu ilişkinin baskın karakteri belli oldu! 😏"
+                  </p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                   <div className="text-[#3b82f6] font-black text-3xl mb-1">{scores.p1}</div>
+                   <div className="text-white/50 text-xs font-bold uppercase">{names.p1}</div>
+                </div>
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                   <div className="text-[#ec4899] font-black text-3xl mb-1">{scores.p2}</div>
+                   <div className="text-white/50 text-xs font-bold uppercase">{names.p2}</div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="w-full py-4 bg-white text-[#491799] rounded-xl font-black text-xl hover:bg-purple-50 transition-all flex items-center justify-center gap-2"
+                >
+                  <RefreshCw className="w-5 h-5" />
+                  Tekrar Oyna
+                </button>
+                <Link 
+                  href="/"
+                  className="w-full py-4 bg-white/5 hover:bg-white/10 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2"
+                >
+                  Ana Sayfa
+                </Link>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
