@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -94,6 +94,93 @@ model BoxNightTask {
   type      String   // reward, risk, fun
   icon      String   // Heart, Lock, Skull, etc.
   image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// User Model for Voting
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // Hashed or simple for MVP
+  createdAt DateTime @default(now())
+  
+  votes     OutfitVote[]
+}
+
+// Outfit Competition Models
+model OutfitSubmission {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  fullName  String?
+  imageUrl  String
+  imageHash String?  // For duplicate detection
+  status    String   @default("PENDING") // PENDING, APPROVED, REJECTED, SELECTED, DELETED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  entries   OutfitCompetitionEntry[]
+}
+
+model OutfitCompetition {
+  id           String   @id @default(cuid())
+  status       String   @default("WAITING") // WAITING, ACTIVE, COMPLETED
+  currentRound String   @default("ROUND_1") // ROUND_1, SEMI_FINAL, FINAL
+  startDate    DateTime @default(now())
+  endDate      DateTime?
+  
+  entries      OutfitCompetitionEntry[]
+}
+
+model OutfitCompetitionEntry {
+  id            String   @id @default(cuid())
+  competitionId String
+  competition   OutfitCompetition @relation(fields: [competitionId], references: [id])
+  submissionId  String
+  submission    OutfitSubmission @relation(fields: [submissionId], references: [id])
+  round         String   // ROUND_1, SEMI_FINAL, FINAL
+  votes         Int      @default(0)
+  
+  voteRecords   OutfitVote[]
+  
+  @@unique([competitionId, submissionId])
+}
+
+model OutfitVote {
+  id        String   @id @default(cuid())
+  entryId   String
+  entry     OutfitCompetitionEntry @relation(fields: [entryId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  userIp    String
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String   // DELETE, LOGIN, UPDATE, ERROR, SECURITY
+  description String
+  userId      String?
+  ip          String?
+  timestamp   DateTime @default(now())
+}
+
+model LoveMeterQuestion {
+  id        String   @id @default(cuid())
+  text      String
+  option1   String
+  option2   String
+  option3   String
+  option4   String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WhoIsLikelyQuestion {
+  id        String   @id @default(cuid())
+  text      String
+  order     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

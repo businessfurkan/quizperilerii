@@ -33,7 +33,11 @@ export async function getQuizzes() {
 }
 
 export async function getCategories() {
-  return await prisma.category.findMany();
+  return await prisma.category.findMany({
+    orderBy: {
+      name: 'asc'
+    }
+  });
 }
 
 export async function getQuizById(id: string) {

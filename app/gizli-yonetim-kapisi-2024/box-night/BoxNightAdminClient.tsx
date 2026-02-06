@@ -24,7 +24,7 @@ const ICONS = [
 const TYPES = [
   { value: "reward", label: "Ödül", color: "bg-green-100 text-green-700 border-green-200" },
   { value: "risk", label: "Risk", color: "bg-red-100 text-red-700 border-red-200" },
-  { value: "fun", label: "Eğlence", color: "bg-blue-100 text-blue-700 border-blue-200" },
+  { value: "fun", label: "Eğlence", color: "bg-purple-100 text-purple-700 border-purple-200" },
 ];
 
 export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClientProps) {
@@ -123,8 +123,8 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
   return (
     <div className="space-y-8">
       {/* Form Section */}
-      <div className="bg-white rounded-2xl border-4 border-[#1e3a8a] p-6 shadow-[8px_8px_0px_0px_rgba(30,58,138,1)]">
-        <h2 className="text-2xl font-black text-[#1e3a8a] mb-6 flex items-center gap-3">
+      <div className="bg-white rounded-2xl border-4 border-[#2a0d59] p-6 shadow-[8px_8px_0px_0px_rgba(42,13,89,1)]">
+        <h2 className="text-2xl font-black text-[#2a0d59] mb-6 flex items-center gap-3">
           {editingId ? <RefreshCw className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
           {editingId ? "Görevi Düzenle" : "Yeni Görev Ekle"}
         </h2>
@@ -133,18 +133,18 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-bold text-[#1e3a8a] mb-2">Görev/Ceza Metni</label>
+                <label className="block text-sm font-bold text-[#2a0d59] mb-2">Görev/Ceza Metni</label>
                 <input
                   type="text"
                   value={formData.text}
                   onChange={e => setFormData({ ...formData, text: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-[#1e3a8a]/20 focus:border-[#1e3a8a] outline-none font-bold text-[#1e3a8a] placeholder:text-[#1e3a8a]/40"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-[#2a0d59]/20 focus:border-[#2a0d59] outline-none font-bold text-[#2a0d59] placeholder:text-[#2a0d59]/40"
                   placeholder="Örn: 10 şınav çek..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#1e3a8a] mb-2">Tür</label>
+                <label className="block text-sm font-bold text-[#2a0d59] mb-2">Tür</label>
                 <div className="flex gap-2">
                   {TYPES.map(type => (
                     <button
@@ -154,8 +154,8 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
                       className={cn(
                         "flex-1 py-2 rounded-lg font-bold border-2 transition-all",
                         formData.type === type.value
-                          ? "border-[#1e3a8a] bg-[#1e3a8a] text-white"
-                          : "border-gray-200 text-gray-400 hover:border-[#1e3a8a]/50"
+                          ? "border-[#2a0d59] bg-[#2a0d59] text-white"
+                          : "border-gray-200 text-gray-400 hover:border-[#2a0d59]/50"
                       )}
                     >
                       {type.label}
@@ -165,7 +165,7 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-[#1e3a8a] mb-2">İkon</label>
+                <label className="block text-sm font-bold text-[#2a0d59] mb-2">İkon</label>
                 <div className="flex flex-wrap gap-2">
                   {ICONS.map(({ name, icon: Icon }) => (
                     <button
@@ -175,8 +175,8 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
                       className={cn(
                         "p-3 rounded-xl border-2 transition-all",
                         formData.icon === name
-                          ? "border-[#1e3a8a] bg-[#1e3a8a] text-white"
-                          : "border-gray-200 text-gray-400 hover:border-[#1e3a8a]/50"
+                          ? "border-[#2a0d59] bg-[#2a0d59] text-white"
+                          : "border-gray-200 text-gray-400 hover:border-[#2a0d59]/50"
                       )}
                     >
                       {/* @ts-ignore */}
@@ -189,12 +189,12 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-bold text-[#1e3a8a] mb-2">Görsel (Opsiyonel)</label>
+                <label className="block text-sm font-bold text-[#2a0d59] mb-2">Görsel (Opsiyonel)</label>
                 <div 
                   onClick={() => fileInputRef.current?.click()}
                   className={cn(
-                    "relative aspect-video rounded-xl border-2 border-dashed border-[#1e3a8a]/30 flex flex-col items-center justify-center cursor-pointer hover:bg-[#1e3a8a]/5 transition-colors overflow-hidden group",
-                    formData.image && "border-solid border-[#1e3a8a]"
+                    "relative aspect-video rounded-xl border-2 border-dashed border-[#2a0d59]/30 flex flex-col items-center justify-center cursor-pointer hover:bg-[#2a0d59]/5 transition-colors overflow-hidden group",
+                    formData.image && "border-solid border-[#2a0d59]"
                   )}
                 >
                   {formData.image ? (
@@ -208,11 +208,11 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
                     </>
                   ) : (
                     <div className="text-center p-6">
-                      <div className="w-12 h-12 bg-[#1e3a8a]/10 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <ImageIcon className="w-6 h-6 text-[#1e3a8a]" />
+                      <div className="w-12 h-12 bg-[#2a0d59]/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <ImageIcon className="w-6 h-6 text-[#2a0d59]" />
                       </div>
-                      <p className="text-[#1e3a8a] font-bold">Görsel Yükle</p>
-                      <p className="text-xs text-[#1e3a8a]/60 mt-1">PNG, JPG, GIF (Max 5MB)</p>
+                      <p className="text-[#2a0d59] font-bold">Görsel Yükle</p>
+                      <p className="text-xs text-[#2a0d59]/60 mt-1">PNG, JPG, GIF (Max 5MB)</p>
                     </div>
                   )}
                   <input
@@ -243,7 +243,7 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 bg-[#1e3a8a] text-white py-4 rounded-xl font-black text-lg hover:bg-[#1e3a8a]/90 transition-colors flex items-center justify-center gap-2 shadow-lg active:scale-[0.98]"
+              className="flex-1 bg-[#2a0d59] text-white py-4 rounded-xl font-black text-lg hover:bg-[#2a0d59]/90 transition-colors flex items-center justify-center gap-2 shadow-lg active:scale-[0.98]"
             >
               {loading ? (
                 <RefreshCw className="w-6 h-6 animate-spin" />
@@ -277,13 +277,13 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
            return (
             <div 
               key={task.id} 
-              className="bg-white rounded-2xl border-4 border-[#1e3a8a] overflow-hidden shadow-[4px_4px_0px_0px_rgba(30,58,138,1)] hover:translate-y-[-2px] transition-all group"
+              className="bg-white rounded-2xl border-4 border-[#2a0d59] overflow-hidden shadow-[4px_4px_0px_0px_rgba(42,13,89,1)] hover:translate-y-[-2px] transition-all group"
             >
-              <div className="relative h-48 bg-gray-100 border-b-4 border-[#1e3a8a]">
+              <div className="relative h-48 bg-gray-100 border-b-4 border-[#2a0d59]">
                 {task.image ? (
                   <Image src={task.image} alt={task.text} fill className="object-cover" />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center text-[#1e3a8a]/20">
+                  <div className="absolute inset-0 flex items-center justify-center text-[#2a0d59]/20">
                     <ImageIcon className="w-12 h-12" />
                   </div>
                 )}
@@ -296,17 +296,17 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
               
               <div className="p-6">
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#1e3a8a]/10 flex items-center justify-center shrink-0 border-2 border-[#1e3a8a]">
+                  <div className="w-12 h-12 rounded-xl bg-[#2a0d59]/10 flex items-center justify-center shrink-0 border-2 border-[#2a0d59]">
                     {/* @ts-ignore */}
-                    <Icon className="w-6 h-6 text-[#1e3a8a]" />
+                    <Icon className="w-6 h-6 text-[#2a0d59]" />
                   </div>
-                  <p className="font-bold text-[#1e3a8a] line-clamp-3">{task.text}</p>
+                  <p className="font-bold text-[#2a0d59] line-clamp-3">{task.text}</p>
                 </div>
 
-                <div className="flex gap-2 mt-4 pt-4 border-t-2 border-[#1e3a8a]/10">
+                <div className="flex gap-2 mt-4 pt-4 border-t-2 border-[#2a0d59]/10">
                   <button
                     onClick={() => handleEdit(task)}
-                    className="flex-1 py-2 bg-[#8bb9e0] text-[#1e3a8a] rounded-lg font-bold hover:bg-[#8bb9e0]/80 transition-colors text-sm"
+                    className="flex-1 py-2 bg-[#d8b4fe] text-[#2a0d59] rounded-lg font-bold hover:bg-[#d8b4fe]/80 transition-colors text-sm"
                   >
                     Düzenle
                   </button>
@@ -324,8 +324,14 @@ export default function BoxNightAdminClient({ initialTasks }: BoxNightAdminClien
 
         {/* Empty State / Add Placeholders if less than 12 */}
         {tasks.length < 12 && (
-          <div className="col-span-full py-8 text-center text-[#1e3a8a]/60 font-medium">
-             <p>Şu an {tasks.length} görev var. Oyun için en az 12 görev önerilir.</p>
+          <div className="col-span-full py-12 text-center bg-white/50 rounded-2xl border-4 border-dashed border-[#2a0d59]/20 flex flex-col items-center justify-center gap-4">
+             <div className="p-4 bg-[#2a0d59]/10 rounded-full">
+               <AlertTriangle className="w-8 h-8 text-[#2a0d59]" />
+             </div>
+             <div>
+               <p className="text-xl font-black text-[#2a0d59]">Yetersiz Görev Sayısı</p>
+               <p className="text-[#2a0d59]/70 font-medium">Şu an {tasks.length} görev var. Oyunun düzgün çalışması için en az 12 görev önerilir.</p>
+             </div>
           </div>
         )}
       </div>

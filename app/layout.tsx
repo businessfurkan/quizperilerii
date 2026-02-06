@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Providers } from "./providers";
 
-const nunito = Nunito({
-  weight: ["400", "500", "600", "700", "800", "900"],
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-nunito",
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body
-        className={`${nunito.variable} antialiased text-foreground font-sans overflow-x-hidden`}
+        className={`${outfit.variable} antialiased text-foreground font-sans overflow-x-hidden`}
       >
         <Providers>
           <Navbar />

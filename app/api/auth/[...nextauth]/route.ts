@@ -1,5 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "@/lib/prisma";
+import { verifyPassword } from "@/lib/auth-utils";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -20,48 +22,52 @@ export const authOptions: NextAuthOptions = {
         const validEmail = cleanEnv(process.env.ADMIN_EMAIL);
         const validPassword = cleanEnv(process.env.ADMIN_PASSWORD);
 
-        // Debug info
-        console.log("Env Email configured:", !!validEmail);
-        console.log("Env Password configured:", !!validPassword);
-        if (validPassword) console.log("Env Password length:", validPassword.length);
-        
-        if (!validEmail || !validPassword) {
-            console.error("CRITICAL: Admin credentials not found in environment variables!");
-            return null;
-        }
-
         const isEmailMatch = credentials?.email === validEmail;
         const isPasswordMatch = credentials?.password === validPassword;
 
-        console.log("Email Match:", isEmailMatch);
-        console.log("Password Match:", isPasswordMatch);
-
+        // 1. Check Admin
         if (isEmailMatch && isPasswordMatch) {
-          console.log("Authorize success");
-          return { id: "1", name: "Admin", email: validEmail };
+          console.log("Authorize success: Admin");
+          return { id: "admin", name: "Admin", email: validEmail, role: "admin" };
         }
         
-        console.log("Authorize failed - Mismatch");
-        if (!isEmailMatch) console.log("Reason: Email mismatch");
-        if (!isPasswordMatch) console.log("Reason: Password mismatch");
-        
+        // 2. Check User
+        if (credentials?.email && credentials?.password) {
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email }
+          });
+          
+          if (user && verifyPassword(credentials.password, user.password)) {
+             console.log("Authorize success: User");
+             return { id: user.id, name: user.email.split('@')[0], email: user.email, role: "user" };
+          }
+        }
+
+        console.log("Authorize failed");
         return null;
       }
     })
   ],
   pages: {
-    signIn: "/gizli-yonetim-kapisi-2024/login",
-    error: '/gizli-yonetim-kapisi-2024/login', // Error code passed in url query string as ?error=
+    signIn: "/gizli-yonetim-kapisi-2024/login", // Default admin login
+    error: '/gizli-yonetim-kapisi-2024/login', 
   },
   callbacks: {
     async session({ session, token }) {
+      if (session.user) {
+        (session.user as any).id = token.sub;
+        (session.user as any).role = token.role;
+      }
       return session;
     },
     async jwt({ token, user }) {
+      if (user) {
+        token.role = (user as any).role;
+      }
       return token;
     }
   },
-  secret: process.env.NEXTAUTH_SECRET || "super-secret-key-change-this-in-prod",
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);

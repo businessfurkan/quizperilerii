@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FileQuestion, FolderTree, LogOut, Sparkles, Vote, Box } from "lucide-react";
+import { LayoutDashboard, FileQuestion, FolderTree, LogOut, Sparkles, Vote, Box, Shirt, ScrollText } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,8 @@ const sidebarItems = [
   { name: "Kategoriler", href: "/gizli-yonetim-kapisi-2024/categories", icon: FolderTree },
   { name: "Anketler", href: "/gizli-yonetim-kapisi-2024/polls", icon: Vote },
   { name: "Box Night", href: "/gizli-yonetim-kapisi-2024/box-night", icon: Box },
+  { name: "Kombin", href: "/gizli-yonetim-kapisi-2024/kombin", icon: Shirt },
+  { name: "Sistem Logları", href: "/gizli-yonetim-kapisi-2024/logs", icon: ScrollText },
 ];
 
 export default function AdminLayout({
@@ -22,14 +24,14 @@ export default function AdminLayout({
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-background text-blue-900 flex font-sans">
+    <div className="min-h-screen bg-background text-purple-900 flex font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#8bb9e0] border-r-4 border-blue-900 flex-shrink-0 flex flex-col fixed inset-y-0 left-0 z-50 shadow-[4px_0px_0px_0px_rgba(30,58,138,0.1)]">
-        <div className="p-6 border-b-2 border-blue-900/10 flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-blue-900 text-white shadow-sm">
+      <aside className="w-64 bg-[#d8b4fe] border-r-4 border-purple-900 flex-shrink-0 flex flex-col fixed inset-y-0 left-0 z-50 shadow-[4px_0px_0px_0px_rgba(42,13,89,0.1)]">
+        <div className="p-6 border-b-2 border-purple-900/10 flex items-center gap-2">
+          <div className="p-1.5 rounded-lg bg-purple-900 text-white shadow-sm">
              <Sparkles className="w-5 h-5" />
           </div>
-          <Link href="/gizli-yonetim-kapisi-2024" className="text-xl font-bold text-blue-900 tracking-tight">
+          <Link href="/gizli-yonetim-kapisi-2024" className="text-xl font-bold text-purple-900 tracking-tight">
             Admin Panel
           </Link>
         </div>
@@ -46,18 +48,18 @@ export default function AdminLayout({
                 className={cn(
                   "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-bold border-2",
                   isActive
-                    ? "bg-blue-900 text-white border-blue-900 shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)]"
-                    : "text-blue-900/70 border-transparent hover:bg-blue-900/10 hover:text-blue-900 hover:border-blue-900/20"
+                    ? "bg-purple-900 text-white border-purple-900 shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)]"
+                    : "text-purple-900/70 border-transparent hover:bg-purple-900/10 hover:text-purple-900 hover:border-purple-900/20"
                 )}
               >
-                <Icon className={cn("w-5 h-5", isActive ? "text-white" : "text-blue-900/60 group-hover:text-blue-900")} />
+                <Icon className={cn("w-5 h-5", isActive ? "text-white" : "text-purple-900/60 group-hover:text-purple-900")} />
                 <span>{item.name}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className="p-4 border-t-2 border-blue-900/10">
+        <div className="p-4 border-t-2 border-purple-900/10">
           <button
             onClick={() => signOut({ callbackUrl: "/gizli-yonetim-kapisi-2024/login" })}
             className="w-full flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-xl transition-colors font-bold border-2 border-transparent hover:border-red-200"

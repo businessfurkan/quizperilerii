@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Trophy, Home, Clock, Calendar, Star, Flame } from "lucide-react";
 import Link from "next/link";
 import QuizCard from "@/components/QuizCard";
-import { DotPattern } from "@/components/ui/background-patterns";
+import { ModernGridPattern } from "@/components/ui/background-patterns";
 import { cn } from "@/lib/utils";
 
 type FilterType = "all" | "week" | "month";
@@ -32,20 +32,19 @@ export default function PopularClient({ initialQuizzes }: PopularClientProps) {
   });
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#0f0720] relative overflow-hidden font-sans">
       {/* Background Pattern */}
-      <DotPattern
-        className="absolute inset-0 text-[#1e3a8a]/[0.05] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
-        cx={1}
-        cy={1}
-        cr={1}
-        width={24}
-        height={24}
-      />
+      <div className="fixed inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay" />
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-600/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+      </div>
 
-      {/* Decorative Gradients */}
-      <div className="absolute top-0 left-1/2 w-[800px] h-[600px] bg-gradient-to-b from-[#8bb9e0]/20 to-transparent blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-t from-[#8bb9e0]/10 to-transparent blur-[80px] rounded-full translate-x-1/3 translate-y-1/3 pointer-events-none" />
+      <ModernGridPattern
+        className="absolute inset-0 text-white/[0.03] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
+        width={32}
+        height={32}
+      />
 
       <div className="container mx-auto px-4 py-12 relative z-10">
         {/* Header Section */}
@@ -55,33 +54,33 @@ export default function PopularClient({ initialQuizzes }: PopularClientProps) {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center text-center mb-16 space-y-6"
         >
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#1e3a8a] text-white border-4 border-[#8bb9e0] shadow-[4px_4px_0px_0px_rgba(30,58,138,0.3)] transform -rotate-2 hover:rotate-0 transition-transform duration-300 cursor-default">
-            <Flame className="w-5 h-5 text-[#facc15] fill-current animate-pulse" />
-            <span className="font-black tracking-wider text-sm uppercase">Trend Listesi</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 text-white border border-white/10 backdrop-blur-md shadow-lg transform -rotate-2 hover:rotate-0 transition-transform duration-300 cursor-default">
+            <Flame className="w-5 h-5 text-orange-400 fill-orange-400 animate-pulse" />
+            <span className="font-bold tracking-wider text-sm uppercase">Trend Listesi</span>
           </div>
           
           <div className="relative">
-            <h1 className="text-5xl md:text-7xl font-black text-[#1e3a8a] drop-shadow-[4px_4px_0px_rgba(139,185,224,1)] tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl font-black text-white drop-shadow-2xl tracking-tight leading-tight">
               Popüler Quizler
             </h1>
             {/* Floating Icons around Title */}
             <motion.div 
               animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-8 -right-12 hidden md:block text-[#facc15]"
+              className="absolute -top-8 -right-12 hidden md:block text-yellow-400"
             >
-              <Star className="w-12 h-12 fill-current drop-shadow-lg" />
+              <Star className="w-12 h-12 fill-current drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]" />
             </motion.div>
             <motion.div 
               animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-4 -left-12 hidden md:block text-[#8bb9e0]"
+              className="absolute -bottom-4 -left-12 hidden md:block text-purple-400"
             >
-              <Trophy className="w-10 h-10 fill-current drop-shadow-lg" />
+              <Trophy className="w-10 h-10 fill-current drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]" />
             </motion.div>
           </div>
           
-          <p className="text-[#1e3a8a]/70 font-bold text-lg max-w-2xl leading-relaxed">
+          <p className="text-white/60 font-medium text-lg max-w-2xl leading-relaxed">
             Topluluğumuzun en çok sevdiği, binlerce kişi tarafından çözülen ve viral olan içerikleri keşfet.
           </p>
         </motion.div>
@@ -102,22 +101,14 @@ export default function PopularClient({ initialQuizzes }: PopularClientProps) {
               key={item.id}
               onClick={() => setFilter(item.id as FilterType)}
               className={cn(
-                "group relative px-6 py-3 rounded-xl font-black text-sm uppercase tracking-wide transition-all duration-300 flex items-center gap-2",
+                "group relative px-6 py-3 rounded-xl font-bold text-sm uppercase tracking-wide transition-all duration-300 flex items-center gap-2 overflow-hidden",
                 filter === item.id
-                  ? "bg-[#1e3a8a] text-white shadow-[6px_6px_0px_0px_#8bb9e0] translate-x-[-2px] translate-y-[-2px]"
-                  : "bg-white text-[#1e3a8a] border-2 border-[#1e3a8a]/10 hover:border-[#1e3a8a] hover:bg-blue-50"
+                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                  : "bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white"
               )}
             >
-              <item.icon className={cn("w-4 h-4", filter === item.id ? "text-[#facc15]" : "text-[#1e3a8a]/40 group-hover:text-[#1e3a8a]")} />
-              {item.label}
-              {filter === item.id && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 border-2 border-[#1e3a8a] rounded-xl"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              )}
+              <item.icon className={cn("w-4 h-4", filter === item.id ? "text-yellow-300" : "text-white/40 group-hover:text-white/80")} />
+              <span className="relative z-10">{item.label}</span>
             </button>
           ))}
         </motion.div>
@@ -150,24 +141,24 @@ export default function PopularClient({ initialQuizzes }: PopularClientProps) {
               animate={{ opacity: 1, scale: 1 }}
               className="max-w-md mx-auto pt-10"
             >
-              <div className="bg-white rounded-[2.5rem] p-10 border-[3px] border-[#1e3a8a] shadow-[12px_12px_0px_0px_rgba(30,58,138,1)] text-center space-y-8 transform hover:-translate-y-2 transition-transform duration-300">
-                <div className="w-32 h-32 bg-[#8bb9e0]/20 rounded-full flex items-center justify-center mx-auto border-4 border-[#8bb9e0] relative">
-                  <Clock className="w-16 h-16 text-[#1e3a8a]" />
-                  <div className="absolute top-0 right-0 w-8 h-8 bg-[#facc15] rounded-full border-2 border-[#1e3a8a] animate-bounce" />
+              <div className="bg-white/5 rounded-[2.5rem] p-10 border border-white/10 backdrop-blur-xl text-center space-y-8 transform hover:-translate-y-2 transition-transform duration-300 shadow-2xl">
+                <div className="w-32 h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto border border-white/10 relative">
+                  <Clock className="w-16 h-16 text-purple-300" />
+                  <div className="absolute top-0 right-0 w-8 h-8 bg-yellow-400 rounded-full border-2 border-[#0f0720] animate-bounce shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
                 </div>
                 
                 <div className="space-y-3">
-                  <h3 className="text-3xl font-black text-[#1e3a8a]">
+                  <h3 className="text-3xl font-black text-white">
                     Henüz Quiz Yok
                   </h3>
-                  <p className="text-[#1e3a8a]/60 font-bold leading-relaxed">
+                  <p className="text-white/50 font-medium leading-relaxed">
                     Seçtiğin zaman aralığında popüler olan bir quiz bulunamadı. Filtreyi değiştirerek şansını tekrar dene!
                   </p>
                 </div>
 
                 <button 
                   onClick={() => setFilter("all")}
-                  className="w-full py-4 bg-[#1e3a8a] hover:bg-blue-900 text-white font-black rounded-2xl shadow-[4px_4px_0px_0px_#8bb9e0] hover:shadow-[2px_2px_0px_0px_#8bb9e0] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-3 group"
+                  className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-black rounded-2xl shadow-lg hover:shadow-purple-500/25 transition-all flex items-center justify-center gap-3 group"
                 >
                   <Trophy className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                   Tüm Zamanları Gör

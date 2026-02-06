@@ -205,28 +205,28 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
   return (
     <form onSubmit={handleSubmit} className="max-w-5xl mx-auto space-y-8 pb-20">
       {/* 1. TEMEL BİLGİLER */}
-      <div className="bg-[#8bb9e0] border-4 border-[#1e3a8a] shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] rounded-3xl p-6 md:p-8 space-y-6">
-        <h2 className="text-2xl font-black text-[#1e3a8a] mb-4 tracking-tight">1. Temel Bilgiler</h2>
+      <div className="bg-[#d8b4fe] border-4 border-[#2a0d59] shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] rounded-3xl p-6 md:p-8 space-y-6">
+        <h2 className="text-2xl font-black text-[#2a0d59] mb-4 tracking-tight">1. Temel Bilgiler</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-bold text-[#1e3a8a]">Quiz Başlığı</label>
+            <label className="text-sm font-bold text-[#2a0d59]">Quiz Başlığı</label>
             <input
               name="title"
               defaultValue={initialData?.title}
               required
-              className="w-full bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 text-[#1e3a8a] placeholder:text-[#1e3a8a]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+              className="w-full bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 text-[#2a0d59] placeholder:text-[#2a0d59]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
               placeholder="Örn: Hangi 90'lar Şarkısısın?"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-bold text-[#1e3a8a]">Kategori</label>
+            <label className="text-sm font-bold text-[#2a0d59]">Kategori</label>
             <select
               name="categorySlug"
               defaultValue={initialData?.categorySlug}
               required
-              className="w-full bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 text-[#1e3a8a] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+              className="w-full bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 text-[#2a0d59] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
             >
               <option value="">Kategori Seçiniz...</option>
               {categories.map((cat) => (
@@ -236,15 +236,15 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-bold text-[#1e3a8a] flex items-center gap-2">
-              <ImageIcon className="w-4 h-4 text-[#1e3a8a]" />
+            <label className="text-sm font-bold text-[#2a0d59] flex items-center gap-2">
+              <ImageIcon className="w-4 h-4 text-[#2a0d59]" />
               Kapak Görseli
             </label>
             <input type="hidden" name="image" value={coverImage} required />
             
             <div className="flex gap-4 items-start">
               {coverImage && (
-                <div className="relative w-32 h-32 rounded-xl overflow-hidden border-2 border-[#1e3a8a] group flex-shrink-0 shadow-[4px_4px_0px_0px_rgba(30,58,138,1)]">
+                <div className="relative w-32 h-32 rounded-xl overflow-hidden border-2 border-[#2a0d59] group flex-shrink-0 shadow-[4px_4px_0px_0px_rgba(42,13,89,1)]">
                   <Image 
                     src={coverImage} 
                     alt="Kapak" 
@@ -265,7 +265,7 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
               <div 
                 onClick={() => coverInputRef.current?.click()}
                 className={cn(
-                  "flex-1 bg-white border-2 border-dashed border-[#1e3a8a]/40 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-[#1e3a8a]/5 hover:border-[#1e3a8a] transition-colors gap-2",
+                  "flex-1 bg-white border-2 border-dashed border-[#2a0d59]/40 rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:bg-[#2a0d59]/5 hover:border-[#2a0d59] transition-colors gap-2",
                   coverImage ? "h-32" : "h-32"
                 )}
               >
@@ -276,22 +276,22 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
                   onChange={handleCoverImageChange} 
                   className="hidden" 
                 />
-                <Upload className="w-8 h-8 text-[#1e3a8a]/40" />
-                <span className="text-[#1e3a8a]/60 text-sm font-bold">Görsel seçmek için tıklayın</span>
+                <Upload className="w-8 h-8 text-[#2a0d59]/40" />
+                <span className="text-[#2a0d59]/60 text-sm font-bold">Görsel seçmek için tıklayın</span>
               </div>
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-bold text-[#1e3a8a] flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#1e3a8a]" />
+            <label className="text-sm font-bold text-[#2a0d59] flex items-center gap-2">
+              <Zap className="w-4 h-4 text-[#2a0d59]" />
               Zorluk Seviyesi
             </label>
             <select
               name="difficulty"
               defaultValue={initialData?.difficulty}
               required
-              className="w-full bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 text-[#1e3a8a] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+              className="w-full bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 text-[#2a0d59] focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
             >
               <option value="Kolay">Kolay</option>
               <option value="Orta">Orta</option>
@@ -299,30 +299,30 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
             </select>
           </div>
 
-          <div className="flex items-center gap-3 bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)]">
+          <div className="flex items-center gap-3 bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)]">
              <input
                type="checkbox"
                name="isPopular"
                defaultChecked={isPopular}
                id="isPopular"
-               className="w-5 h-5 rounded-md border-[#1e3a8a] text-[#1e3a8a] focus:ring-[#1e3a8a]"
+               className="w-5 h-5 rounded-md border-[#2a0d59] text-[#2a0d59] focus:ring-[#2a0d59]"
              />
-             <label htmlFor="isPopular" className="text-sm font-bold text-[#1e3a8a] select-none cursor-pointer">
+             <label htmlFor="isPopular" className="text-sm font-bold text-[#2a0d59] select-none cursor-pointer">
                Popüler Quizlere Ekle
              </label>
           </div>
 
           {/* Hidden fields for default values */}
           <input type="hidden" name="icon" value={initialData?.icon || "star"} />
-          <input type="hidden" name="gradient" value={initialData?.gradient || "from-[#1e3a8a] to-pink-500"} />
+          <input type="hidden" name="gradient" value={initialData?.gradient || "from-[#2a0d59] to-pink-500"} />
           
           <div className="space-y-2 md:col-span-2">
-            <label className="text-sm font-bold text-[#1e3a8a]">Kısa Açıklama (Opsiyonel)</label>
+            <label className="text-sm font-bold text-[#2a0d59]">Kısa Açıklama (Opsiyonel)</label>
             <textarea
               name="description"
               defaultValue={initialData?.description}
               rows={2}
-              className="w-full bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 text-[#1e3a8a] placeholder:text-[#1e3a8a]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all resize-none font-bold"
+              className="w-full bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 text-[#2a0d59] placeholder:text-[#2a0d59]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all resize-none font-bold"
               placeholder="Quiz hakkında kısa bilgi..."
             />
           </div>
@@ -330,9 +330,9 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
       </div>
 
       {/* 2. TOPLU GÖRSEL YÜKLEME */}
-      <div className="bg-[#8bb9e0] border-4 border-[#1e3a8a] shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] rounded-3xl p-6 md:p-8 space-y-6">
+      <div className="bg-[#d8b4fe] border-4 border-[#2a0d59] shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] rounded-3xl p-6 md:p-8 space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-black text-[#1e3a8a] tracking-tight">2. Görselleri Yükle</h2>
+          <h2 className="text-2xl font-black text-[#2a0d59] tracking-tight">2. Görselleri Yükle</h2>
           <span className={cn(
             "px-4 py-2 rounded-full text-sm font-black transition-colors border-2",
             items.length >= 16 ? "bg-green-100 text-green-800 border-green-600" : "bg-red-100 text-red-800 border-red-600"
@@ -344,7 +344,7 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
         <div 
           className={cn(
             "relative border-4 border-dashed rounded-3xl p-12 transition-all text-center group cursor-pointer bg-white",
-            dragActive ? "border-[#1e3a8a] bg-[#1e3a8a]/5" : "border-[#1e3a8a]/30 hover:border-[#1e3a8a] hover:bg-[#1e3a8a]/5"
+            dragActive ? "border-[#2a0d59] bg-[#2a0d59]/5" : "border-[#2a0d59]/30 hover:border-[#2a0d59] hover:bg-[#2a0d59]/5"
           )}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -362,14 +362,14 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
           />
           
           <div className="flex flex-col items-center gap-4">
-            <div className="w-20 h-20 rounded-full bg-[#1e3a8a]/10 flex items-center justify-center group-hover:scale-110 transition-transform border-2 border-[#1e3a8a]/20">
-              <Upload className="w-10 h-10 text-[#1e3a8a]/60 group-hover:text-[#1e3a8a] transition-colors" />
+            <div className="w-20 h-20 rounded-full bg-[#2a0d59]/10 flex items-center justify-center group-hover:scale-110 transition-transform border-2 border-[#2a0d59]/20">
+              <Upload className="w-10 h-10 text-[#2a0d59]/60 group-hover:text-[#2a0d59] transition-colors" />
             </div>
             <div>
-              <p className="text-xl font-bold text-[#1e3a8a] mb-2">Görselleri Sürükle ve Bırak</p>
-              <p className="text-[#1e3a8a]/60 font-medium">veya dosya seçmek için tıklayın</p>
+              <p className="text-xl font-bold text-[#2a0d59] mb-2">Görselleri Sürükle ve Bırak</p>
+              <p className="text-[#2a0d59]/60 font-medium">veya dosya seçmek için tıklayın</p>
             </div>
-            <p className="text-sm text-[#1e3a8a]/40 font-bold max-w-md mx-auto">
+            <p className="text-sm text-[#2a0d59]/40 font-bold max-w-md mx-auto">
               En az 16 görsel yüklemelisiniz. Sistem otomatik olarak turnuva eşleşmelerini ayarlayacaktır.
             </p>
           </div>
@@ -378,13 +378,13 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
           {loading && uploadProgress && (
             <div className="absolute inset-0 bg-white/90 backdrop-blur-sm rounded-3xl flex flex-col items-center justify-center z-10">
               <div className="w-64 space-y-2">
-                <div className="flex justify-between text-sm text-[#1e3a8a] font-bold">
+                <div className="flex justify-between text-sm text-[#2a0d59] font-bold">
                   <span>Yükleniyor...</span>
                   <span>{uploadProgress.current} / {uploadProgress.total}</span>
                 </div>
-                <div className="h-4 bg-[#1e3a8a]/10 rounded-full overflow-hidden border-2 border-[#1e3a8a]">
+                <div className="h-4 bg-[#2a0d59]/10 rounded-full overflow-hidden border-2 border-[#2a0d59]">
                   <div 
-                    className="h-full bg-[#1e3a8a] transition-all duration-300"
+                    className="h-full bg-[#2a0d59] transition-all duration-300"
                     style={{ width: `${(uploadProgress.current / uploadProgress.total) * 100}%` }}
                   />
                 </div>
@@ -397,7 +397,7 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
         {items.length > 0 && (
           <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mt-8">
             {items.map((item, index) => (
-              <div key={item.id} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-[#1e3a8a] bg-white shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)]">
+              <div key={item.id} className="group relative aspect-square rounded-xl overflow-hidden border-2 border-[#2a0d59] bg-white shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)]">
                 <Image 
                   src={item.image} 
                   alt={item.text} 
@@ -412,8 +412,8 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
                 >
                   <X className="w-3 h-3" />
                 </button>
-                <div className="absolute bottom-0 left-0 right-0 p-2 bg-white/95 backdrop-blur-sm border-t-2 border-[#1e3a8a]">
-                  <p className="text-[10px] text-[#1e3a8a] truncate font-black">{item.text}</p>
+                <div className="absolute bottom-0 left-0 right-0 p-2 bg-white/95 backdrop-blur-sm border-t-2 border-[#2a0d59]">
+                  <p className="text-[10px] text-[#2a0d59] truncate font-black">{item.text}</p>
                 </div>
               </div>
             ))}
@@ -422,24 +422,24 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
       </div>
 
       {/* 4. SONUÇ AYARI (OPSİYONEL) */}
-      <div className="bg-[#8bb9e0] border-4 border-[#1e3a8a] shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] rounded-3xl p-6 md:p-8 space-y-6">
-        <h2 className="text-2xl font-black text-[#1e3a8a] mb-4 tracking-tight">3. Sonuç Ayarları (Opsiyonel)</h2>
+      <div className="bg-[#d8b4fe] border-4 border-[#2a0d59] shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] rounded-3xl p-6 md:p-8 space-y-6">
+        <h2 className="text-2xl font-black text-[#2a0d59] mb-4 tracking-tight">3. Sonuç Ayarları (Opsiyonel)</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-bold text-[#1e3a8a]">Sonuç Başlığı</label>
+            <label className="text-sm font-bold text-[#2a0d59]">Sonuç Başlığı</label>
             <input
               name="resultTitle"
               defaultValue={initialData?.resultTitle || ""}
-              className="w-full bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 text-[#1e3a8a] placeholder:text-[#1e3a8a]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+              className="w-full bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 text-[#2a0d59] placeholder:text-[#2a0d59]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
               placeholder="Varsayılan: ŞAMPİYON"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-bold text-[#1e3a8a]">Sonuç Açıklaması</label>
+            <label className="text-sm font-bold text-[#2a0d59]">Sonuç Açıklaması</label>
             <input
               name="resultDescription"
               defaultValue={initialData?.resultDescription || ""}
-              className="w-full bg-white border-2 border-[#1e3a8a] rounded-xl px-4 py-3 text-[#1e3a8a] placeholder:text-[#1e3a8a]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+              className="w-full bg-white border-2 border-[#2a0d59] rounded-xl px-4 py-3 text-[#2a0d59] placeholder:text-[#2a0d59]/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
               placeholder="Varsayılan: Senin favorin seçildi!"
             />
           </div>
@@ -451,7 +451,7 @@ export default function QuizForm({ categories, initialData, isPopular = false, a
         <button
           type="submit"
           disabled={loading || items.length < 16}
-          className="w-full bg-[#1e3a8a] hover:bg-[#172554] text-white py-6 rounded-2xl font-black text-xl shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform border-2 border-transparent hover:border-white/20 flex items-center justify-center gap-3"
+          className="w-full bg-[#2a0d59] hover:bg-[#172554] text-white py-6 rounded-2xl font-black text-xl shadow-[6px_6px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform border-2 border-transparent hover:border-white/20 flex items-center justify-center gap-3"
         >
           {loading ? (
             <>

@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import confetti from "canvas-confetti";
 import QuizCard from "@/components/QuizCard";
-import { DotPattern } from "@/components/ui/background-patterns";
+import { ModernGridPattern } from "@/components/ui/background-patterns";
 
 type QuizWithItems = Quiz & { items: TournamentItem[] };
 
@@ -143,14 +143,14 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
         angle: 60,
         spread: 55,
         origin: { x: 0 },
-        colors: ['#8bb9e0', '#1e3a8a', '#facc15']
+        colors: ['#d8b4fe', '#2a0d59', '#facc15']
       });
       confetti({
         particleCount: 3,
         angle: 120,
         spread: 55,
         origin: { x: 1 },
-        colors: ['#8bb9e0', '#1e3a8a', '#facc15']
+        colors: ['#d8b4fe', '#2a0d59', '#facc15']
       });
 
       if (Date.now() < end) {
@@ -163,23 +163,23 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
   if (winner) {
     return (
       <div className="min-h-screen bg-[#f0f9ff] relative overflow-hidden flex flex-col items-center justify-center py-12 px-4">
-         <DotPattern className="absolute inset-0 text-[#1e3a8a]/[0.05]" cx={1} cy={1} cr={1} width={20} height={20} />
+         <ModernGridPattern className="absolute inset-0 text-[#2a0d59]/[0.05]"  width={20} height={20} />
          
          <motion.div 
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           className="relative z-10 w-full max-w-4xl"
         >
-          <div className="bg-white rounded-[3rem] p-8 md:p-12 border-[6px] border-[#1e3a8a] shadow-[16px_16px_0px_0px_rgba(30,58,138,1)] text-center relative overflow-hidden">
+          <div className="bg-white rounded-[3rem] p-8 md:p-12 border-[6px] border-[#2a0d59] shadow-[16px_16px_0px_0px_rgba(42,13,89,1)] text-center relative overflow-hidden">
              {/* Decorative Background */}
-             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#8bb9e0]/20 to-transparent" />
+             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#d8b4fe]/20 to-transparent" />
              <div className="absolute -top-20 -right-20 w-60 h-60 bg-[#facc15]/20 rounded-full blur-3xl" />
              
              <div className="relative z-10 space-y-8">
                <motion.div 
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="inline-flex items-center gap-3 bg-[#1e3a8a] text-white px-8 py-3 rounded-2xl font-black uppercase tracking-widest shadow-lg transform -rotate-2"
+                className="inline-flex items-center gap-3 bg-[#2a0d59] text-white px-8 py-3 rounded-2xl font-black uppercase tracking-widest shadow-lg transform -rotate-2"
                >
                  <Crown className="w-6 h-6 text-[#facc15] fill-current animate-bounce" />
                  <span>Şampiyon Seçildi</span>
@@ -190,7 +190,7 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
                     initial={{ rotateY: 180 }}
                     animate={{ rotateY: 0 }}
                     transition={{ duration: 0.8, type: "spring" }}
-                    className="relative w-full h-full rounded-[2.5rem] overflow-hidden border-[6px] border-[#1e3a8a] shadow-[12px_12px_0px_0px_rgba(30,58,138,0.3)] bg-white"
+                    className="relative w-full h-full rounded-[2.5rem] overflow-hidden border-[6px] border-[#2a0d59] shadow-[12px_12px_0px_0px_rgba(42,13,89,0.3)] bg-white"
                   >
                     <Image
                       src={winner.image || "/fallback-quiz.jpg"}
@@ -198,20 +198,20 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2a0d59]/80 via-transparent to-transparent" />
                     <div className="absolute bottom-0 inset-x-0 p-6">
                        <h2 className="text-3xl md:text-4xl font-black text-white drop-shadow-md leading-none mb-2">{winner.text}</h2>
                     </div>
                   </motion.div>
                   {/* Floating Elements */}
-                  <div className="absolute -right-6 -bottom-6 w-20 h-20 bg-[#facc15] rounded-full flex items-center justify-center border-4 border-[#1e3a8a] shadow-lg animate-bounce">
-                    <Trophy className="w-10 h-10 text-[#1e3a8a] fill-current" />
+                  <div className="absolute -right-6 -bottom-6 w-20 h-20 bg-[#facc15] rounded-full flex items-center justify-center border-4 border-[#2a0d59] shadow-lg animate-bounce">
+                    <Trophy className="w-10 h-10 text-[#2a0d59] fill-current" />
                   </div>
                </div>
 
                <div className="space-y-2">
-                 <p className="text-xl font-bold text-[#1e3a8a]/60">Toplam Puanın</p>
-                 <div className="text-6xl font-black text-[#1e3a8a] tracking-tighter flex items-center justify-center gap-2">
+                 <p className="text-xl font-bold text-[#2a0d59]/60">Toplam Puanın</p>
+                 <div className="text-6xl font-black text-[#2a0d59] tracking-tighter flex items-center justify-center gap-2">
                    <Zap className="w-8 h-8 text-[#facc15] fill-current" />
                    {score.toLocaleString()}
                  </div>
@@ -228,12 +228,12 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
                  </Button>
                </div>
 
-               <div className="flex items-center justify-center gap-6 pt-6 border-t-2 border-[#1e3a8a]/10 mt-8">
-                 <Link href="/" className="flex items-center gap-2 text-[#1e3a8a]/60 hover:text-[#1e3a8a] font-bold transition-colors">
+               <div className="flex items-center justify-center gap-6 pt-6 border-t-2 border-[#2a0d59]/10 mt-8">
+                 <Link href="/" className="flex items-center gap-2 text-[#2a0d59]/60 hover:text-[#2a0d59] font-bold transition-colors">
                    <Home className="w-5 h-5" />
                    Ana Sayfa
                  </Link>
-                 <button onClick={() => window.location.reload()} className="flex items-center gap-2 text-[#1e3a8a] hover:text-blue-600 font-black transition-colors">
+                 <button onClick={() => window.location.reload()} className="flex items-center gap-2 text-[#2a0d59] hover:text-purple-600 font-black transition-colors">
                    <RefreshCcw className="w-5 h-5" />
                    Tekrar Oyna
                  </button>
@@ -245,11 +245,11 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
          {similarQuizzes.length > 0 && (
             <div className="mt-16 w-full max-w-6xl">
               <div className="flex items-center gap-3 mb-8 justify-center">
-                <Sparkles className="w-6 h-6 text-[#1e3a8a]" />
-                <h3 className="text-2xl font-black text-[#1e3a8a] uppercase tracking-wide">
+                <Sparkles className="w-6 h-6 text-[#2a0d59]" />
+                <h3 className="text-2xl font-black text-[#2a0d59] uppercase tracking-wide">
                   Bunları da Seveceksin
                 </h3>
-                <Sparkles className="w-6 h-6 text-[#1e3a8a]" />
+                <Sparkles className="w-6 h-6 text-[#2a0d59]" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {similarQuizzes.map((q, idx) => (
@@ -266,27 +266,27 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
 
   return (
     <div className="min-h-screen bg-[#f8fafc] flex flex-col overflow-hidden relative font-sans">
-      <DotPattern className="absolute inset-0 text-[#1e3a8a]/[0.03]" cx={1} cy={1} cr={1} width={24} height={24} />
+      <ModernGridPattern className="absolute inset-0 text-[#2a0d59]/[0.03]"  width={24} height={24} />
       
       {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 w-full h-[500px] bg-gradient-to-b from-[#8bb9e0]/10 to-transparent -translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-0 left-1/2 w-full h-[500px] bg-gradient-to-b from-[#d8b4fe]/10 to-transparent -translate-x-1/2 pointer-events-none" />
 
       <div className="container mx-auto px-4 py-6 flex flex-col h-full flex-grow relative z-10 max-w-7xl">
         {/* Header Stats */}
         <motion.div 
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white rounded-3xl p-4 md:p-6 border-[3px] border-[#1e3a8a] shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] mb-6 md:mb-10 flex flex-col md:flex-row items-center justify-between gap-6 sticky top-4 z-50"
+          className="bg-white rounded-3xl p-4 md:p-6 border-[3px] border-[#2a0d59] shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] mb-6 md:mb-10 flex flex-col md:flex-row items-center justify-between gap-6 sticky top-4 z-50"
         >
            {/* Left: Round Info */}
            <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
              <div className="flex items-center gap-3">
-               <div className="w-12 h-12 bg-[#1e3a8a] rounded-xl flex items-center justify-center text-white shadow-md">
+               <div className="w-12 h-12 bg-[#2a0d59] rounded-xl flex items-center justify-center text-white shadow-md">
                  <Trophy className="w-6 h-6" />
                </div>
                <div>
-                 <p className="text-xs font-bold text-[#1e3a8a]/50 uppercase tracking-wider">Şu Anki Tur</p>
-                 <h2 className="text-lg font-black text-[#1e3a8a] leading-none">{roundName}</h2>
+                 <p className="text-xs font-bold text-[#2a0d59]/50 uppercase tracking-wider">Şu Anki Tur</p>
+                 <h2 className="text-lg font-black text-[#2a0d59] leading-none">{roundName}</h2>
                </div>
              </div>
              
@@ -294,7 +294,7 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
              <div className="md:hidden">
                <div className={cn(
                  "w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg border-2 transition-all",
-                 timeLeft <= 3 ? "bg-red-500 border-red-600 text-white animate-pulse" : "bg-[#facc15] border-[#1e3a8a] text-[#1e3a8a]"
+                 timeLeft <= 3 ? "bg-red-500 border-red-600 text-white animate-pulse" : "bg-[#facc15] border-[#2a0d59] text-[#2a0d59]"
                )}>
                  {timeLeft}
                </div>
@@ -304,15 +304,15 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
            {/* Center: Progress & Score */}
            <div className="flex-1 w-full md:max-w-xl flex flex-col gap-2">
              <div className="flex justify-between items-end px-1">
-               <span className="text-xs font-bold text-[#1e3a8a]/60 uppercase">İlerleme</span>
-               <div className="flex items-center gap-1 text-[#1e3a8a] font-black">
+               <span className="text-xs font-bold text-[#2a0d59]/60 uppercase">İlerleme</span>
+               <div className="flex items-center gap-1 text-[#2a0d59] font-black">
                  <Zap className="w-4 h-4 text-[#facc15] fill-current" />
                  <span>{score} Puan</span>
                </div>
              </div>
-             <div className="h-4 bg-[#1e3a8a]/10 rounded-full overflow-hidden border border-[#1e3a8a]/20">
+             <div className="h-4 bg-[#2a0d59]/10 rounded-full overflow-hidden border border-[#2a0d59]/20">
                <motion.div 
-                 className="h-full bg-[#1e3a8a] relative"
+                 className="h-full bg-[#2a0d59] relative"
                  initial={{ width: 0 }}
                  animate={{ width: `${progress}%` }}
                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -326,14 +326,14 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
            <div className="flex items-center gap-3 hidden md:flex">
               <button 
                 onClick={() => setSoundEnabled(!soundEnabled)} 
-                className="w-12 h-12 rounded-xl border-2 border-[#1e3a8a]/20 flex items-center justify-center text-[#1e3a8a] hover:bg-blue-50 transition-colors"
+                className="w-12 h-12 rounded-xl border-2 border-[#2a0d59]/20 flex items-center justify-center text-[#2a0d59] hover:bg-purple-50 transition-colors"
               >
                 {soundEnabled ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
               </button>
               
               <div className={cn(
                  "px-5 py-2.5 rounded-xl border-2 font-black flex items-center gap-2 transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]",
-                 timeLeft <= 3 ? "bg-red-500 border-red-600 text-white animate-pulse scale-110" : "bg-[#facc15] border-[#1e3a8a] text-[#1e3a8a]"
+                 timeLeft <= 3 ? "bg-red-500 border-red-600 text-white animate-pulse scale-110" : "bg-[#facc15] border-[#2a0d59] text-[#2a0d59]"
                )}>
                  <Clock className="w-5 h-5" />
                  <span className="text-xl w-6 text-center">{timeLeft}s</span>
@@ -350,9 +350,9 @@ export default function QuizInterface({ quiz, similarQuizzes = [] }: { quiz: Qui
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="w-20 h-20 md:w-28 md:h-28 bg-[#facc15] border-[6px] border-[#1e3a8a] rounded-full flex items-center justify-center shadow-[0px_0px_30px_rgba(250,204,21,0.6)]"
+              className="w-20 h-20 md:w-28 md:h-28 bg-[#facc15] border-[6px] border-[#2a0d59] rounded-full flex items-center justify-center shadow-[0px_0px_30px_rgba(250,204,21,0.6)]"
             >
-              <span className="font-black text-3xl md:text-5xl text-[#1e3a8a] italic -skew-x-12">VS</span>
+              <span className="font-black text-3xl md:text-5xl text-[#2a0d59] italic -skew-x-12">VS</span>
             </motion.div>
           </div>
 
@@ -397,10 +397,10 @@ function ChoiceCard({ item, onClick, direction, disabled }: { item: TournamentIt
       )}
     >
       {/* Card Shadow/Border Layer */}
-      <div className="absolute inset-0 bg-[#1e3a8a] rounded-[2.5rem] transform translate-x-3 translate-y-3 group-hover:translate-x-5 group-hover:translate-y-5 transition-transform duration-300" />
+      <div className="absolute inset-0 bg-[#2a0d59] rounded-[2.5rem] transform translate-x-3 translate-y-3 group-hover:translate-x-5 group-hover:translate-y-5 transition-transform duration-300" />
       
       {/* Main Card Content */}
-      <div className="absolute inset-0 bg-white border-[5px] border-[#1e3a8a] rounded-[2.5rem] overflow-hidden shadow-inner flex flex-col">
+      <div className="absolute inset-0 bg-white border-[5px] border-[#2a0d59] rounded-[2.5rem] overflow-hidden shadow-inner flex flex-col">
         {/* Image Container */}
         <div className="relative flex-grow overflow-hidden bg-gray-100">
            <Image
@@ -411,18 +411,18 @@ function ChoiceCard({ item, onClick, direction, disabled }: { item: TournamentIt
              priority
            />
            {/* Overlay Gradient */}
-           <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a] via-transparent to-transparent opacity-80" />
+           <div className="absolute inset-0 bg-gradient-to-t from-[#2a0d59] via-transparent to-transparent opacity-80" />
            
            {/* Selection Overlay */}
-           <div className="absolute inset-0 bg-[#1e3a8a]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-              <div className="bg-[#facc15] text-[#1e3a8a] px-8 py-3 rounded-2xl font-black text-xl uppercase tracking-widest border-4 border-[#1e3a8a] shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] transform scale-0 group-hover:scale-100 transition-transform duration-300">
+           <div className="absolute inset-0 bg-[#2a0d59]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+              <div className="bg-[#facc15] text-[#2a0d59] px-8 py-3 rounded-2xl font-black text-xl uppercase tracking-widest border-4 border-[#2a0d59] shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] transform scale-0 group-hover:scale-100 transition-transform duration-300">
                  Bunu Seç
               </div>
            </div>
         </div>
 
         {/* Text Container */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-center bg-gradient-to-t from-[#1e3a8a] to-transparent pt-20">
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-center bg-gradient-to-t from-[#2a0d59] to-transparent pt-20">
           <h3 className="text-2xl md:text-4xl font-black text-white drop-shadow-[2px_2px_0px_rgba(0,0,0,0.5)] leading-tight">
             {item.text}
           </h3>

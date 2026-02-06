@@ -8,11 +8,13 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { QuizSchema, CategorySchema } from "@/lib/validations";
 import { z } from "zod";
+import { headers } from "next/headers";
+import { rateLimit } from "@/lib/rate-limit";
 
 // Helper for auth check
 async function checkAuth() {
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session || (session.user as any).role !== "admin") {
     throw new Error("Unauthorized access");
   }
 }
@@ -41,7 +43,7 @@ export async function createQuiz(formData: FormData) {
     id: Date.now().toString(),
     ...validatedData,
     icon: validatedData.icon || "help-circle",
-    gradient: validatedData.gradient || "from-blue-500 to-cyan-500",
+    gradient: validatedData.gradient || "from-purple-500 to-cyan-500",
   };
 
   await saveQuiz(newQuiz);
@@ -77,7 +79,7 @@ export async function updateQuiz(id: string, formData: FormData) {
     id,
     ...validatedData,
     icon: validatedData.icon || "help-circle", 
-    gradient: validatedData.gradient || "from-blue-500 to-cyan-500",
+    gradient: validatedData.gradient || "from-purple-500 to-cyan-500",
   };
 
   await saveQuiz(updatedQuiz);
@@ -176,6 +178,21 @@ export async function deleteCategoryAction(id: string) {
 // POLL ACTIONS
 
 export async function submitPollVote(optionId: string, demographics?: { ageRange: string; gender: string; city: string }) {
+  // Rate Limiting
+  const headersList = await headers();
+  const ip = headersList.get("x-forwarded-for") || "unknown";
+  
+  const isAllowed = rateLimit({
+    ip,
+    limit: 10, // 10 votes per hour per IP (generous but prevents flood)
+    windowMs: 60 * 60 * 1000, 
+  });
+
+  if (!isAllowed) {
+    // Fail silently or return error (UI might not handle error well, so returning null is safer for now)
+    return null; 
+  }
+
   const result = await votePoll(optionId, demographics);
   
   let topOption = null;

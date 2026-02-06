@@ -4,33 +4,33 @@
   /* Gamified Blue/Navy Theme */
   
   /* Backgrounds */
-  --color-background: #005d9c; /* Medium Blue */
+  --color-background: #491799; /* Medium Blue */
   --color-foreground: #ffffff; /* White text for better contrast on blue bg */
   
   /* Primary Brand Color - Navy */
-  --color-primary: #1e3a8a; /* Navy Blue */
+  --color-primary: #2a0d59; /* Navy Blue */
   --color-primary-foreground: #ffffff;
-  --color-primary-hover: #172554; /* Darker Navy */
+  --color-primary-hover: #1e0a40; /* Darker Purple */
   
-  /* Secondary - Light Blue (replaced Yellow/Gold) */
-  --color-secondary: #8bb9e0; /* Light Blue */
-  --color-secondary-foreground: #1e3a8a;
+  /* Secondary - Light Purple */
+  --color-secondary: #d8b4fe; /* Light Purple */
+  --color-secondary-foreground: #2a0d59;
   
   /* Accent - for highlights */
-  --color-accent: #2563eb; /* Blue 600 */
+  --color-accent: #9333ea; /* Purple 600 */
   --color-accent-foreground: #ffffff;
   
   /* UI Elements */
-  --color-card: #005d9c;
+  --color-card: #491799;
   --color-card-foreground: #ffffff;
   
-  --color-border: #1e3a8a; /* Navy Border */
-  --color-input: #1e3a8a;
-  --color-ring: #8bb9e0; /* Light Blue */
+  --color-border: #2a0d59; /* Navy Border */
+  --color-input: #2a0d59;
+  --color-ring: #d8b4fe; /* Light Blue */
 
   /* Semantic Colors */
   --color-success: #15803d; /* Green 700 */
-  --color-warning: #8bb9e0; /* Replaced Yellow 800 with Light Blue */
+  --color-warning: #d8b4fe; /* Replaced Yellow 800 with Light Blue */
   --color-error: #b91c1c; /* Red 700 */
 
   /* Radius */
@@ -39,7 +39,7 @@
   --radius-sm: 0.5rem;
   
   /* Typography */
-  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   
   /* Animations */
   --animate-fade-in: fade-in 0.5s ease-out;
@@ -59,11 +59,11 @@
 /* Custom Utilities */
 @layer utilities {
   .glass {
-    @apply bg-[#005d9c]/90 backdrop-blur-md border-2 border-[#1e3a8a] shadow-[4px_4px_0px_0px_rgba(30,58,138,1)];
+    @apply bg-[#491799]/90 backdrop-blur-md border-2 border-[#2a0d59] shadow-[4px_4px_0px_0px_rgba(42,13,89,1)];
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-[6px_6px_0px_0px_rgba(30,58,138,1)] hover:-translate-y-1 border-2 border-[#1e3a8a];
+    @apply transition-all duration-300 hover:shadow-[6px_6px_0px_0px_rgba(42,13,89,1)] hover:-translate-y-1 border-2 border-[#2a0d59];
   }
   
   .container-padding {
@@ -76,11 +76,11 @@
 }
 
 html {
-  background-color: #005d9c;
+  background-color: #491799;
 }
 
 body {
-  background-color: #005d9c;
+  background-color: #491799;
   color: var(--color-foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
@@ -93,12 +93,12 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #8bb9e0;
+  background: #d8b4fe;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e3a8a;
+  background: #2a0d59;
   border-radius: 5px;
-  border: 2px solid #8bb9e0;
+  border: 2px solid #d8b4fe;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #172554;

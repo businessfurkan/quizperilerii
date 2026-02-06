@@ -100,7 +100,7 @@
       "name": "O mu Bu mu?",
       "description": "Zorlu seçimler seni bekliyor!",
       "icon": "zap",
-      "gradient": "from-[#8bb9e0] via-orange-500 to-red-500"
+      "gradient": "from-[#d8b4fe] via-orange-500 to-red-500"
     },
     {
       "id": "2",
@@ -172,7 +172,7 @@
       "name": "Asla Yapamaz",
       "description": "Cesaretin var mı?",
       "icon": "shield-alert",
-      "gradient": "from-orange-500 via-[#8bb9e0] to-[#8bb9e0]"
+      "gradient": "from-orange-500 via-[#d8b4fe] to-[#d8b4fe]"
     },
     {
       "id": "11",
@@ -188,7 +188,7 @@
       "name": "Ünlüler",
       "description": "Magazin dünyasına ne kadar hakimsin?",
       "icon": "star",
-      "gradient": "from-[#8bb9e0] via-[#8bb9e0] to-orange-500"
+      "gradient": "from-[#d8b4fe] via-[#d8b4fe] to-orange-500"
     },
     {
       "id": "13",
@@ -220,7 +220,7 @@
       "name": "Utandıran Sorular",
       "description": "Yüzün kızarabilir!",
       "icon": "meh",
-      "gradient": "from-red-400 via-orange-500 to-[#8bb9e0]"
+      "gradient": "from-red-400 via-orange-500 to-[#d8b4fe]"
     },
     {
       "id": "17",

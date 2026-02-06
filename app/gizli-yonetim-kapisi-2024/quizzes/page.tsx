@@ -12,27 +12,27 @@ export default async function QuizzesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-black text-blue-900 mb-2">Quiz Yönetimi</h1>
-          <p className="text-blue-900/70 font-medium">Tüm quizleri görüntüle, düzenle veya sil.</p>
+          <h1 className="text-3xl font-black text-purple-900 mb-2">Quiz Yönetimi</h1>
+          <p className="text-purple-900/70 font-medium">Tüm quizleri görüntüle, düzenle veya sil.</p>
         </div>
         <Link
           href="/gizli-yonetim-kapisi-2024/quizzes/new"
-          className="flex items-center gap-2 px-4 py-2 bg-blue-900 hover:bg-blue-800 text-white rounded-xl transition-all font-bold shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 border-2 border-transparent hover:border-white/20"
+          className="flex items-center gap-2 px-4 py-2 bg-purple-900 hover:bg-purple-800 text-white rounded-xl transition-all font-bold shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 border-2 border-transparent hover:border-white/20"
         >
           <Plus className="w-5 h-5" />
           Yeni Quiz Ekle
         </Link>
       </div>
 
-      <div className="bg-[#8bb9e0] border-4 border-blue-900 rounded-2xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(30,58,138,1)]">
+      <div className="bg-[#d8b4fe] border-4 border-purple-900 rounded-2xl overflow-hidden shadow-[8px_8px_0px_0px_rgba(42,13,89,1)]">
         <table className="w-full text-left">
           <thead>
-            <tr className="border-b-2 border-blue-900/20 bg-blue-900/10">
-              <th className="p-4 text-blue-900 font-bold">Quiz</th>
-              <th className="p-4 text-blue-900 font-bold">Kategori</th>
-              <th className="p-4 text-blue-900 font-bold">Zorluk</th>
-              <th className="p-4 text-blue-900 font-bold text-center">Popüler</th>
-              <th className="p-4 text-blue-900 font-bold text-right">İşlemler</th>
+            <tr className="border-b-2 border-purple-900/20 bg-purple-900/10">
+              <th className="p-4 text-purple-900 font-bold">Quiz</th>
+              <th className="p-4 text-purple-900 font-bold">Kategori</th>
+              <th className="p-4 text-purple-900 font-bold">Zorluk</th>
+              <th className="p-4 text-purple-900 font-bold text-center">Popüler</th>
+              <th className="p-4 text-purple-900 font-bold text-right">İşlemler</th>
             </tr>
           </thead>
           <tbody>
@@ -40,10 +40,10 @@ export default async function QuizzesPage() {
               const isPopular = quiz.isPopular;
               
               return (
-                <tr key={quiz.id} className="border-b-2 border-blue-900/10 hover:bg-blue-900/5 transition-colors group">
+                <tr key={quiz.id} className="border-b-2 border-purple-900/10 hover:bg-purple-900/5 transition-colors group">
                   <td className="p-4">
                     <div className="flex items-center gap-3">
-                      <div className="relative w-10 h-10 rounded-lg overflow-hidden shadow-sm border-2 border-blue-900">
+                      <div className="relative w-10 h-10 rounded-lg overflow-hidden shadow-sm border-2 border-purple-900">
                         <Image
                           src={quiz.image}
                           alt={quiz.title}
@@ -53,13 +53,13 @@ export default async function QuizzesPage() {
                         />
                       </div>
                       <div>
-                        <div className="text-blue-900 font-bold">{quiz.title}</div>
-                        <div className="text-blue-900/60 text-xs line-clamp-1 font-semibold">{quiz.description}</div>
+                        <div className="text-purple-900 font-bold">{quiz.title}</div>
+                        <div className="text-purple-900/60 text-xs line-clamp-1 font-semibold">{quiz.description}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="p-4 text-blue-900">
-                    <span className="px-2 py-1 rounded-lg bg-white border-2 border-blue-900 text-xs font-bold text-blue-900">
+                  <td className="p-4 text-purple-900">
+                    <span className="px-2 py-1 rounded-lg bg-white border-2 border-purple-900 text-xs font-bold text-purple-900">
                       {quiz.categorySlug}
                     </span>
                   </td>
@@ -67,7 +67,7 @@ export default async function QuizzesPage() {
                     <span className={cn(
                       "px-2 py-1 rounded-lg text-xs font-black border-2",
                       quiz.difficulty === "Kolay" ? "bg-green-100 text-green-800 border-green-600" :
-                      quiz.difficulty === "Orta" ? "bg-[#8bb9e0]/20 text-[#1e3a8a] border-[#8bb9e0]" :
+                      quiz.difficulty === "Orta" ? "bg-[#d8b4fe]/20 text-[#2a0d59] border-[#d8b4fe]" :
                       "bg-red-100 text-red-800 border-red-600"
                     )}>
                       {quiz.difficulty}
@@ -75,8 +75,8 @@ export default async function QuizzesPage() {
                   </td>
                   <td className="p-4 text-center">
                     <form action={togglePopularAction.bind(null, quiz.id)}>
-                      <button className="p-2 hover:bg-blue-900/10 rounded-full transition-colors">
-                        <Star className={cn("w-5 h-5 transition-colors", isPopular ? "fill-[#8bb9e0] text-[#8bb9e0] stroke-blue-900 stroke-2" : "text-blue-900/30")} />
+                      <button className="p-2 hover:bg-purple-900/10 rounded-full transition-colors">
+                        <Star className={cn("w-5 h-5 transition-colors", isPopular ? "fill-[#d8b4fe] text-[#d8b4fe] stroke-purple-900 stroke-2" : "text-purple-900/30")} />
                       </button>
                     </form>
                   </td>
@@ -84,13 +84,13 @@ export default async function QuizzesPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/gizli-yonetim-kapisi-2024/quizzes/${quiz.id}/edit`}
-                        className="p-2 bg-white text-blue-900 hover:bg-blue-100 rounded-lg transition-colors border-2 border-blue-900 hover:shadow-[2px_2px_0px_0px_rgba(30,58,138,1)]"
+                        className="p-2 bg-white text-purple-900 hover:bg-purple-100 rounded-lg transition-colors border-2 border-purple-900 hover:shadow-[2px_2px_0px_0px_rgba(42,13,89,1)]"
                       >
                         <Edit className="w-4 h-4" />
                       </Link>
                       <form action={deleteQuizAction.bind(null, quiz.id)}>
                         <button 
-                          className="p-2 bg-white text-red-600 hover:bg-red-50 rounded-lg transition-colors border-2 border-blue-900 hover:shadow-[2px_2px_0px_0px_rgba(220,38,38,1)]"
+                          className="p-2 bg-white text-red-600 hover:bg-red-50 rounded-lg transition-colors border-2 border-purple-900 hover:shadow-[2px_2px_0px_0px_rgba(220,38,38,1)]"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -104,7 +104,7 @@ export default async function QuizzesPage() {
         </table>
         
         {quizzes.length === 0 && (
-          <div className="p-8 text-center text-blue-900/40 font-bold">
+          <div className="p-8 text-center text-purple-900/40 font-bold">
             Henüz hiç quiz eklenmemiş.
           </div>
         )}

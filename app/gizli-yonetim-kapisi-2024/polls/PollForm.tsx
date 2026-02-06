@@ -115,38 +115,38 @@ export default function PollForm({ initialData, action }: PollFormProps) {
   return (
     <form onSubmit={handleSubmit} className="max-w-5xl mx-auto space-y-8 pb-20">
       {/* 1. TEMEL BİLGİLER */}
-      <div className="bg-[#8bb9e0] border-4 border-blue-900 shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] rounded-3xl p-6 md:p-8 space-y-6">
-        <h2 className="text-2xl font-black text-blue-900 mb-4 tracking-tight flex items-center gap-2">
+      <div className="bg-[#d8b4fe] border-4 border-purple-900 shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] rounded-3xl p-6 md:p-8 space-y-6">
+        <h2 className="text-2xl font-black text-purple-900 mb-4 tracking-tight flex items-center gap-2">
             <HelpCircle className="w-6 h-6" />
             1. Anket Detayları
         </h2>
         
         <div className="space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-bold text-blue-900">Soru</label>
+            <label className="text-sm font-bold text-purple-900">Soru</label>
             <input
               name="question"
               defaultValue={initialData?.question}
               required
-              className="w-full bg-white border-2 border-blue-900 rounded-xl px-4 py-3 text-blue-900 placeholder:text-blue-900/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold text-lg"
+              className="w-full bg-white border-2 border-purple-900 rounded-xl px-4 py-3 text-purple-900 placeholder:text-purple-900/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold text-lg"
               placeholder="Örn: En sevdiğiniz renk hangisi?"
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-bold text-blue-900">Açıklama (İsteğe bağlı)</label>
+            <label className="text-sm font-bold text-purple-900">Açıklama (İsteğe bağlı)</label>
             <textarea
               name="description"
               defaultValue={initialData?.description || ""}
               rows={3}
-              className="w-full bg-white border-2 border-blue-900 rounded-xl px-4 py-3 text-blue-900 placeholder:text-blue-900/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-medium resize-none"
+              className="w-full bg-white border-2 border-purple-900 rounded-xl px-4 py-3 text-purple-900 placeholder:text-purple-900/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-medium resize-none"
               placeholder="Anket hakkında kısa bir açıklama..."
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-                <label className="text-sm font-bold text-blue-900 flex items-center gap-2">
+                <label className="text-sm font-bold text-purple-900 flex items-center gap-2">
                     <LinkIcon className="w-4 h-4" />
                     Slug (URL)
                 </label>
@@ -154,21 +154,21 @@ export default function PollForm({ initialData, action }: PollFormProps) {
                 name="slug"
                 defaultValue={initialData?.slug}
                 required
-                className="w-full bg-white border-2 border-blue-900 rounded-xl px-4 py-3 text-blue-900 placeholder:text-blue-900/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold font-mono text-sm"
+                className="w-full bg-white border-2 border-purple-900 rounded-xl px-4 py-3 text-purple-900 placeholder:text-purple-900/40 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold font-mono text-sm"
                 placeholder="en-sevdiginiz-renk"
                 />
             </div>
             
             <div className="flex items-center gap-4 pt-8">
-                <div className="flex items-center gap-3 bg-white p-3 rounded-xl border-2 border-blue-900 w-full">
+                <div className="flex items-center gap-3 bg-white p-3 rounded-xl border-2 border-purple-900 w-full">
                     <input
                         type="checkbox"
                         name="isActive"
                         defaultChecked={initialData?.isActive ?? true}
                         id="isActive"
-                        className="w-6 h-6 accent-blue-900 rounded-lg cursor-pointer"
+                        className="w-6 h-6 accent-purple-900 rounded-lg cursor-pointer"
                     />
-                    <label htmlFor="isActive" className="font-bold text-blue-900 cursor-pointer select-none">
+                    <label htmlFor="isActive" className="font-bold text-purple-900 cursor-pointer select-none">
                         Anket Aktif
                     </label>
                 </div>
@@ -177,7 +177,7 @@ export default function PollForm({ initialData, action }: PollFormProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              <div className="space-y-2">
-                <label className="text-sm font-bold text-blue-900 flex items-center gap-2">
+                <label className="text-sm font-bold text-purple-900 flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     Başlangıç Tarihi
                 </label>
@@ -185,11 +185,11 @@ export default function PollForm({ initialData, action }: PollFormProps) {
                     type="datetime-local"
                     name="startDate"
                     defaultValue={formatDate(initialData?.startDate)}
-                    className="w-full bg-white border-2 border-blue-900 rounded-xl px-4 py-3 text-blue-900 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+                    className="w-full bg-white border-2 border-purple-900 rounded-xl px-4 py-3 text-purple-900 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
                 />
              </div>
              <div className="space-y-2">
-                <label className="text-sm font-bold text-blue-900 flex items-center gap-2">
+                <label className="text-sm font-bold text-purple-900 flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     Bitiş Tarihi (Opsiyonel)
                 </label>
@@ -197,7 +197,7 @@ export default function PollForm({ initialData, action }: PollFormProps) {
                     type="datetime-local"
                     name="endDate"
                     defaultValue={formatDate(initialData?.endDate)}
-                    className="w-full bg-white border-2 border-blue-900 rounded-xl px-4 py-3 text-blue-900 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.5)] transition-all font-bold"
+                    className="w-full bg-white border-2 border-purple-900 rounded-xl px-4 py-3 text-purple-900 focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(42,13,89,0.5)] transition-all font-bold"
                 />
              </div>
           </div>
@@ -205,16 +205,16 @@ export default function PollForm({ initialData, action }: PollFormProps) {
       </div>
 
       {/* 2. SEÇENEKLER */}
-      <div className="bg-white border-4 border-blue-900 shadow-[8px_8px_0px_0px_rgba(30,58,138,1)] rounded-3xl p-6 md:p-8 space-y-6">
+      <div className="bg-white border-4 border-purple-900 shadow-[8px_8px_0px_0px_rgba(42,13,89,1)] rounded-3xl p-6 md:p-8 space-y-6">
         <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-black text-blue-900 tracking-tight flex items-center gap-2">
+            <h2 className="text-2xl font-black text-purple-900 tracking-tight flex items-center gap-2">
                 <ImageIcon className="w-6 h-6" />
                 2. Seçenekler
             </h2>
             <button
                 type="button"
                 onClick={addOption}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-900 rounded-xl font-bold border-2 border-blue-900 hover:bg-blue-200 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-purple-100 text-purple-900 rounded-xl font-bold border-2 border-purple-900 hover:bg-purple-200 transition-colors"
             >
                 <Plus className="w-5 h-5" />
                 Seçenek Ekle
@@ -223,8 +223,8 @@ export default function PollForm({ initialData, action }: PollFormProps) {
 
         <div className="space-y-4">
             {options.map((option, index) => (
-                <div key={option.id} className="flex gap-4 items-start p-4 bg-blue-50 rounded-xl border-2 border-blue-900/20 group hover:border-blue-900 transition-colors">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-900 text-white rounded-lg flex items-center justify-center font-bold">
+                <div key={option.id} className="flex gap-4 items-start p-4 bg-purple-50 rounded-xl border-2 border-purple-900/20 group hover:border-purple-900 transition-colors">
+                    <div className="flex-shrink-0 w-8 h-8 bg-purple-900 text-white rounded-lg flex items-center justify-center font-bold">
                         {index + 1}
                     </div>
                     
@@ -233,12 +233,12 @@ export default function PollForm({ initialData, action }: PollFormProps) {
                             value={option.text}
                             onChange={(e) => updateOptionText(option.id, e.target.value)}
                             placeholder={`Seçenek ${index + 1}`}
-                            className="w-full bg-white border-2 border-blue-900/20 rounded-lg px-3 py-2 text-blue-900 font-bold focus:border-blue-900 focus:outline-none transition-colors"
+                            className="w-full bg-white border-2 border-purple-900/20 rounded-lg px-3 py-2 text-purple-900 font-bold focus:border-purple-900 focus:outline-none transition-colors"
                         />
                         
                         <div className="flex items-center gap-3">
                              {option.image && (
-                                <div className="relative w-16 h-16 rounded-lg overflow-hidden border-2 border-blue-900 flex-shrink-0">
+                                <div className="relative w-16 h-16 rounded-lg overflow-hidden border-2 border-purple-900 flex-shrink-0">
                                     <Image src={option.image} alt="Option" fill className="object-cover" />
                                     <button
                                         type="button"
@@ -249,7 +249,7 @@ export default function PollForm({ initialData, action }: PollFormProps) {
                                     </button>
                                 </div>
                              )}
-                             <label className="cursor-pointer flex items-center gap-2 px-3 py-1.5 bg-white border-2 border-blue-900/20 rounded-lg text-xs font-bold text-blue-900 hover:border-blue-900 transition-colors">
+                             <label className="cursor-pointer flex items-center gap-2 px-3 py-1.5 bg-white border-2 border-purple-900/20 rounded-lg text-xs font-bold text-purple-900 hover:border-purple-900 transition-colors">
                                 <ImageIcon className="w-3 h-3" />
                                 {option.image ? "Görseli Değiştir" : "Görsel Ekle"}
                                 <input type="file" accept="image/*" className="hidden" onChange={(e) => handleOptionImageChange(option.id, e)} />
@@ -274,7 +274,7 @@ export default function PollForm({ initialData, action }: PollFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="flex items-center gap-2 px-8 py-4 bg-blue-900 text-white rounded-2xl font-black text-lg shadow-[4px_4px_0px_0px_rgba(250,204,21,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed border-2 border-blue-900"
+          className="flex items-center gap-2 px-8 py-4 bg-purple-900 text-white rounded-2xl font-black text-lg shadow-[4px_4px_0px_0px_rgba(250,204,21,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed border-2 border-purple-900"
         >
           {loading ? (
             <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />

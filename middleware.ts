@@ -20,11 +20,28 @@ export default withAuth(
       }
     }
     
-    // 2. Secret Admin Route Logic
-    // Check if the path starts with the secret admin route
-    return NextResponse.next();
+    const response = NextResponse.next();
+
+    // Security Headers
+    response.headers.set("X-Frame-Options", "DENY");
+    response.headers.set("X-Content-Type-Options", "nosniff");
+    response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+
+    return response;
   },
   {
+    callbacks: {
+      authorized: ({ req, token }) => {
+        // Login sayfasına her zaman erişim izni ver (zaten middleware matcher ile buraya düşüyor ama auth gerektirmez)
+        if (req.nextUrl.pathname.startsWith("/gizli-yonetim-kapisi-2024/login")) {
+          return true;
+        }
+        // Diğer tüm admin sayfaları için ADMIN rolü zorunlu
+        return token?.role === "admin";
+      },
+    },
     pages: {
       signIn: "/gizli-yonetim-kapisi-2024/login",
     },

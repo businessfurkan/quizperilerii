@@ -22,13 +22,13 @@ export default async function EditPollPage({ params }: PageProps) {
       <div className="flex items-center gap-4">
         <Link
           href="/admin/polls"
-          className="p-2 hover:bg-blue-900/10 rounded-xl transition-colors text-blue-900/60 hover:text-blue-900 border-2 border-transparent hover:border-blue-900/20"
+          className="p-2 hover:bg-purple-900/10 rounded-xl transition-colors text-purple-900/60 hover:text-purple-900 border-2 border-transparent hover:border-purple-900/20"
         >
           <ArrowLeft className="w-6 h-6" />
         </Link>
         <div>
-          <h1 className="text-3xl font-black text-blue-900 tracking-tight">Anketi Düzenle</h1>
-          <p className="text-blue-900/60 font-bold">{poll.question}</p>
+          <h1 className="text-3xl font-black text-purple-900 tracking-tight">Anketi Düzenle</h1>
+          <p className="text-purple-900/60 font-bold">{poll.question}</p>
         </div>
       </div>
 

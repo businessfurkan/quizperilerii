@@ -27,12 +27,12 @@ export default function QuizCard({ quiz, index }: { quiz: QuizWithRelations; ind
     >
       <Link href={`/quiz/${quiz.id}`} className="block h-full">
         <div className={cn(
-          "relative h-full flex flex-col bg-white rounded-[2rem] overflow-hidden",
-          "border-[3px] border-[#1e3a8a] shadow-[6px_6px_0px_0px_rgba(30,58,138,1)] transition-all duration-300",
-          "hover:shadow-[10px_10px_0px_0px_rgba(30,58,138,1)] hover:-translate-y-1.5"
+          "relative h-full flex flex-col bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden",
+          "shadow-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-all duration-300 transform hover:-translate-y-1",
+          "border border-white/10 hover:border-purple-500/30"
         )}>
           {/* Image Container */}
-          <div className="relative aspect-[4/3] overflow-hidden border-b-[3px] border-[#1e3a8a] bg-slate-100">
+          <div className="relative aspect-[4/3] overflow-hidden bg-slate-900/50">
             <Image 
               src={quiz.image || "/fallback-quiz.jpg"} 
               alt={quiz.title}
@@ -42,15 +42,15 @@ export default function QuizCard({ quiz, index }: { quiz: QuizWithRelations; ind
             />
             
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/90 via-[#1e3a8a]/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f0720] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
             
             {/* Top Badges */}
             <div className="absolute top-3 left-3 right-3 flex justify-between items-start z-10">
               <span className={cn(
-                "px-2.5 py-1 text-[10px] font-black tracking-wider uppercase rounded-lg border-2 border-[#1e3a8a] shadow-[2px_2px_0px_0px_rgba(30,58,138,1)] flex items-center gap-1",
-                quiz.difficulty === "Kolay" ? "bg-[#4ade80] text-[#1e3a8a]" :
-                quiz.difficulty === "Orta" ? "bg-[#8bb9e0] text-[#1e3a8a]" :
-                "bg-[#f87171] text-[#1e3a8a]"
+                "px-3 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full backdrop-blur-md shadow-sm flex items-center gap-1.5",
+                quiz.difficulty === "Kolay" ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" :
+                quiz.difficulty === "Orta" ? "bg-purple-500/20 text-purple-300 border border-purple-500/30" :
+                "bg-red-500/20 text-red-300 border border-red-500/30"
               )}>
                 <Trophy className="w-3 h-3" />
                 {quiz.difficulty}
@@ -58,37 +58,37 @@ export default function QuizCard({ quiz, index }: { quiz: QuizWithRelations; ind
             </div>
 
             {/* Floating Category Icon */}
-            <div className="absolute -bottom-6 right-4 z-20">
-               <div className="w-12 h-12 rounded-2xl bg-[#8bb9e0] border-[3px] border-[#1e3a8a] shadow-[4px_4px_0px_0px_rgba(30,58,138,1)] flex items-center justify-center text-[#1e3a8a] transform transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
-                 <Icon className="w-6 h-6" />
+            <div className="absolute -bottom-5 right-4 z-20">
+               <div className="w-10 h-10 rounded-full bg-[#1a103c] border border-white/10 shadow-lg flex items-center justify-center text-purple-400 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:border-purple-500/50">
+                 <Icon className="w-5 h-5" />
                </div>
             </div>
           </div>
 
           {/* Content Container */}
-          <div className="flex flex-col flex-grow p-5 pt-8 space-y-4 bg-gradient-to-b from-white to-blue-50/50">
+          <div className="flex flex-col flex-grow p-5 pt-8 space-y-3">
              {/* Title & Description */}
              <div className="flex-grow space-y-2">
-               <h3 className="text-xl font-black text-[#1e3a8a] group-hover:text-[#2563eb] transition-colors leading-tight line-clamp-2">
+               <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors leading-tight line-clamp-2">
                  {quiz.title}
                </h3>
-               <p className="text-[#1e3a8a]/60 text-xs font-bold leading-relaxed line-clamp-2">
+               <p className="text-white/50 text-xs font-medium leading-relaxed line-clamp-2">
                  {quiz.description}
                </p>
              </div>
 
              {/* Footer Info */}
-             <div className="flex items-center justify-between pt-2 border-t-2 border-[#1e3a8a]/10">
-                <div className="flex items-center gap-3 text-xs font-bold text-[#1e3a8a]/60">
-                   <div className="flex items-center gap-1.5 bg-blue-100/50 px-2 py-1 rounded-md">
+             <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                <div className="flex items-center gap-3 text-xs font-medium text-white/40">
+                   <div className="flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
                       <Layers className="w-3.5 h-3.5" />
                       <span>{itemCount} Soru</span>
                    </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs font-black text-[#1e3a8a] group/btn">
-                  <span className="group-hover:underline decoration-2 underline-offset-2">Çöz</span>
-                  <div className="w-6 h-6 rounded-full bg-[#1e3a8a] text-white flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-[-15deg]">
+                <div className="flex items-center gap-2 text-xs font-bold text-purple-400 group/btn">
+                  <span className="group-hover:mr-1 transition-all">Çöz</span>
+                  <div className="w-6 h-6 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center transition-all group-hover:bg-purple-500 group-hover:text-white border border-purple-500/20 group-hover:border-purple-500">
                     <Play className="w-3 h-3 fill-current ml-0.5" />
                   </div>
                 </div>
